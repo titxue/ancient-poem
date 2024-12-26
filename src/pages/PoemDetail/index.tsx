@@ -9,8 +9,12 @@ import styles from './PoemDetail.module.scss';
 
 const { Title, Paragraph, Text } = Typography;
 
+interface RouteParams {
+  id: string;
+}
+
 export const PoemDetail: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
+  const { id } = useParams<RouteParams>();
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
   const { selectedPoem: poem, loading, error } = useSelector(
@@ -23,7 +27,7 @@ export const PoemDetail: React.FC = () => {
     }
   }, [dispatch, id]);
 
-  const handleBack = () => {
+  const handleBack = (): void => {
     navigate(-1);
   };
 
@@ -77,7 +81,7 @@ export const PoemDetail: React.FC = () => {
         </Paragraph>
 
         <div className={styles.content}>
-          {poem.content.map((line, index) => (
+          {poem.content.map((line: string, index: number) => (
             <Paragraph key={index} className={styles.line}>
               {line}
             </Paragraph>
@@ -88,7 +92,7 @@ export const PoemDetail: React.FC = () => {
           <>
             <Divider orientation="left">译文</Divider>
             <div className={styles.translation}>
-              {poem.translation.map((line, index) => (
+              {poem.translation.map((line: string, index: number) => (
                 <Paragraph key={index}>{line}</Paragraph>
               ))}
             </div>
@@ -108,7 +112,7 @@ export const PoemDetail: React.FC = () => {
           <>
             <Divider orientation="left">注释</Divider>
             <div className={styles.notes}>
-              {poem.notes.map((note, index) => (
+              {poem.notes.map((note: string, index: number) => (
                 <Paragraph key={index}>{note}</Paragraph>
               ))}
             </div>
@@ -125,7 +129,7 @@ export const PoemDetail: React.FC = () => {
         )}
 
         <div className={styles.tags}>
-          {poem.tags.map((tag) => (
+          {poem.tags.map((tag: string) => (
             <Tag key={tag} color="blue">
               {tag}
             </Tag>
