@@ -1,0 +1,92 @@
+:root {
+  // Colors
+  --primary-color: #2563eb;
+  --primary-color-hover: #3b82f6;
+  --primary-color-active: #1d4ed8;
+  --primary-color-outline: rgba(37, 99, 235, 0.2);
+  
+  --success-color: #10b981;
+  --warning-color: #f59e0b;
+  --error-color: #ef4444;
+  
+  --text-color: #1f2937;
+  --text-secondary: #6b7280;
+  --text-disabled: #9ca3af;
+  
+  --background-color: #f3f4f6;
+  --card-background: #ffffff;
+  
+  // Typography
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+  --font-family-code: 'JetBrains Mono', 'SFMono-Regular', Consolas, Menlo, monospace;
+  --font-family-poem: "STKaiti", "KaiTi", "楷体", serif;
+  
+  // Border
+  --border-radius: 12px;
+  --border-radius-lg: 16px;
+  --border-radius-sm: 8px;
+  --border-color: #e5e7eb;
+  
+  // Shadow
+  --box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  --box-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --box-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  --box-shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  
+  // Animation
+  --transition-duration: 0.2s;
+  --transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
+  --animation-duration: 0.2s;
+  
+  // Layout
+  --header-height: 72px;
+  --footer-height: 56px;
+  --sidebar-width: 280px;
+  --container-padding: 24px;
+  
+  // Component
+  --component-padding: 24px;
+  --component-margin: 24px;
+  --component-border-radius: var(--border-radius);
+  --component-box-shadow: var(--box-shadow);
+  
+  // Card
+  --card-padding: 24px;
+  --card-radius: var(--border-radius);
+  --card-shadow: var(--box-shadow);
+  --card-background: var(--card-background);
+  --card-hover-shadow: var(--box-shadow-hover);
+  
+  // Button
+  --button-height: 40px;
+  --button-padding: 0 20px;
+  --button-font-size: 15px;
+  --button-border-radius: var(--border-radius-sm);
+  --button-primary-color: #fff;
+  --button-primary-bg: var(--primary-color);
+  --button-primary-border: var(--primary-color);
+  --button-default-color: var(--text-color);
+  --button-default-bg: #fff;
+  --button-default-border: var(--border-color);
+  
+  // Input
+  --input-height: 40px;
+  --input-padding: 8px 16px;
+  --input-font-size: 15px;
+  --input-border-radius: var(--border-radius-sm);
+  --input-border-color: var(--border-color);
+  --input-background: #fff;
+  --input-hover-border-color: var(--primary-color-hover);
+  --input-focus-border-color: var(--primary-color);
+  --input-focus-box-shadow: 0 0 0 3px var(--primary-color-outline);
+  
+  // Menu
+  --menu-item-height: 48px;
+  --menu-item-padding: 0 24px;
+  --menu-item-font-size: 15px;
+  --menu-item-color: var(--text-color);
+  --menu-item-hover-bg: rgba(37, 99, 235, 0.05);
+  --menu-item-active-bg: rgba(37, 99, 235, 0.1);
+  --menu-item-active-color: var(--primary-color);
+} 

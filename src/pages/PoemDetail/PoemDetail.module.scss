@@ -1,75 +1,171 @@
 .container {
-  max-width: 800px;
-  margin: 0 auto;
   padding: 24px;
-}
-
-.header {
-  margin-bottom: 24px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.backButton {
-  font-size: 16px;
-}
-
-.card {
-  padding: 24px;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.title {
-  text-align: center;
-  margin-bottom: 16px !important;
-}
-
-.author {
-  text-align: center;
-  color: rgba(0, 0, 0, 0.45);
-  margin-bottom: 32px !important;
+  min-height: 100vh;
+  background-color: var(--background-color);
 }
 
 .content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 32px;
+  background-color: var(--card-background);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+.header {
+  text-align: center;
   margin-bottom: 32px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.title {
+  margin-bottom: 16px !important;
+  font-size: 32px !important;
+  line-height: 1.4 !important;
+  color: var(--text-color);
+  font-weight: 600;
+}
+
+.author {
+  margin-bottom: 24px !important;
+  color: var(--text-secondary);
+  font-size: 16px;
+  
+  span {
+    margin: 0 8px;
+    
+    &::before {
+      content: '·';
+      margin-right: 8px;
+      color: var(--text-secondary);
+    }
+    
+    &:first-child::before {
+      display: none;
+    }
+  }
+}
+
+.poem {
+  margin-bottom: 32px;
+  padding: 24px;
+  background-color: rgba(0, 0, 0, 0.02);
+  border-radius: var(--border-radius);
   text-align: center;
 }
 
 .line {
-  margin-bottom: 8px !important;
-  font-size: 16px;
+  margin-bottom: 12px !important;
+  font-size: 18px;
   line-height: 1.8 !important;
+  color: var(--text-color);
+  font-family: "STKaiti", "KaiTi", serif;
+  
+  &:last-child {
+    margin-bottom: 0 !important;
+  }
 }
 
-.translation,
-.appreciation,
-.notes,
-.background {
+.section {
   margin-bottom: 32px;
-  font-size: 14px;
-  line-height: 1.8;
-  color: rgba(0, 0, 0, 0.65);
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
-.tags {
-  margin-top: 24px;
+.sectionTitle {
+  margin-bottom: 16px !important;
+  font-size: 20px !important;
+  color: var(--text-color);
+  font-weight: 500;
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  padding-top: 24px;
-  border-top: 1px solid #f0f0f0;
-}
-
-.loading,
-.error,
-.notFound {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-  min-height: 400px;
-  gap: 16px;
+  
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 16px;
+    background-color: var(--primary-color);
+    margin-right: 8px;
+    border-radius: 2px;
+  }
+}
+
+.sectionContent {
+  color: var(--text-color);
+  font-size: 16px;
+  line-height: 1.8;
+  text-align: justify;
+  
+  p {
+    margin-bottom: 16px;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.loading {
+  padding: 48px 0;
+  text-align: center;
+  
+  :global(.ant-spin) {
+    .ant-spin-dot-item {
+      background-color: var(--primary-color);
+    }
+  }
+}
+
+.error {
+  padding: 48px 24px;
+  text-align: center;
+  color: #ff4d4f;
+  font-size: 16px;
+  background-color: var(--card-background);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  
+  &::before {
+    content: '!';
+    display: block;
+    width: 48px;
+    height: 48px;
+    line-height: 48px;
+    text-align: center;
+    background-color: #fff2f0;
+    border-radius: 50%;
+    margin: 0 auto 16px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #ff4d4f;
+  }
+}
+
+.back {
+  margin-bottom: 24px;
+  
+  :global(.ant-btn) {
+    padding: 0 16px;
+    height: 40px;
+    font-size: 15px;
+    border: none;
+    background-color: var(--card-background);
+    box-shadow: var(--box-shadow);
+    transition: all var(--transition-duration);
+    
+    &:hover {
+      transform: translateX(-4px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      color: var(--primary-color);
+    }
+    
+    .anticon {
+      margin-right: 8px;
+    }
+  }
 }

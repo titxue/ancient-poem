@@ -1,15 +1,168 @@
-.container {
-  padding: 24px;
+.list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 32px;
+  margin-bottom: 40px;
+  padding: 8px;
 }
 
 .loading {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 400px;
+  padding: 64px 0;
+  text-align: center;
+  background-color: var(--card-background);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  
+  :global(.ant-spin) {
+    .ant-spin-dot-item {
+      background-color: var(--primary-color);
+    }
+    
+    .ant-spin-text {
+      margin-top: 16px;
+      color: var(--text-secondary);
+      font-size: 15px;
+    }
+  }
+}
+
+.empty {
+  padding: 64px 24px;
+  text-align: center;
+  background-color: var(--card-background);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  
+  .icon {
+    font-size: 64px;
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+    opacity: 0.5;
+  }
+  
+  .text {
+    color: var(--text-secondary);
+    font-size: 16px;
+    margin-bottom: 32px;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .button {
+    min-width: 140px;
+    height: var(--button-height);
+    padding: var(--button-padding);
+    font-size: var(--button-font-size);
+    border-radius: var(--button-border-radius);
+    background: var(--primary-color);
+    border: none;
+    color: white;
+    transition: all var(--transition-duration) var(--transition-timing);
+    
+    &:hover {
+      background: var(--primary-color-hover);
+      transform: translateY(-2px);
+      box-shadow: var(--box-shadow-md);
+    }
+    
+    &:active {
+      background: var(--primary-color-active);
+      transform: translateY(0);
+    }
+  }
 }
 
 .pagination {
-  margin-top: 24px;
   text-align: center;
+  margin-top: 40px;
+  
+  :global {
+    .ant-pagination-item {
+      min-width: 40px;
+      height: 40px;
+      line-height: 38px;
+      border-radius: var(--border-radius-sm);
+      border: 1px solid var(--border-color);
+      background-color: var(--card-background);
+      font-size: 15px;
+      transition: all var(--transition-duration) var(--transition-timing);
+      
+      a {
+        color: var(--text-color);
+      }
+      
+      &:hover {
+        border-color: var(--primary-color);
+        transform: translateY(-2px);
+        box-shadow: var(--box-shadow-md);
+        
+        a {
+          color: var(--primary-color);
+        }
+      }
+      
+      &.ant-pagination-item-active {
+        background-color: var(--primary-color);
+        border-color: var(--primary-color);
+        
+        a {
+          color: white;
+        }
+        
+        &:hover {
+          background-color: var(--primary-color-hover);
+          
+          a {
+            color: white;
+          }
+        }
+      }
+    }
+    
+    .ant-pagination-prev,
+    .ant-pagination-next {
+      .ant-pagination-item-link {
+        border-radius: var(--border-radius-sm);
+        border: 1px solid var(--border-color);
+        background-color: var(--card-background);
+        transition: all var(--transition-duration) var(--transition-timing);
+        width: 40px;
+        height: 40px;
+        line-height: 38px;
+        
+        &:hover {
+          border-color: var(--primary-color);
+          color: var(--primary-color);
+          transform: translateY(-2px);
+          box-shadow: var(--box-shadow-md);
+        }
+      }
+      
+      &.ant-pagination-disabled {
+        .ant-pagination-item-link {
+          border-color: var(--border-color);
+          color: var(--text-disabled);
+          
+          &:hover {
+            transform: none;
+            box-shadow: none;
+          }
+        }
+      }
+    }
+    
+    .ant-pagination-options {
+      .ant-select-selector {
+        border-radius: var(--border-radius-sm) !important;
+        height: 40px !important;
+        padding: 0 16px !important;
+        
+        .ant-select-selection-item {
+          line-height: 38px !important;
+          font-size: 15px;
+        }
+      }
+    }
+  }
 } 
