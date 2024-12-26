@@ -95,7 +95,9 @@ export const PoemDetail: React.FC = () => {
 
         {poem.translation && (
           <>
-            <Divider orientation="left">译文</Divider>
+            <div className={styles.divider}>
+              <Divider orientation="left">译文</Divider>
+            </div>
             <div className={styles.translation}>
               {poem.translation.map((line: string, index: number) => (
                 <Paragraph key={index}>{line}</Paragraph>
@@ -106,7 +108,9 @@ export const PoemDetail: React.FC = () => {
 
         {poem.appreciation && (
           <>
-            <Divider orientation="left">赏析</Divider>
+            <div className={styles.divider}>
+              <Divider orientation="left">赏析</Divider>
+            </div>
             <div className={styles.appreciation}>
               <Paragraph>{poem.appreciation}</Paragraph>
             </div>
@@ -115,7 +119,9 @@ export const PoemDetail: React.FC = () => {
 
         {poem.notes && poem.notes.length > 0 && (
           <>
-            <Divider orientation="left">注释</Divider>
+            <div className={styles.divider}>
+              <Divider orientation="left">注释</Divider>
+            </div>
             <div className={styles.notes}>
               {poem.notes.map((note: string, index: number) => (
                 <Paragraph key={index}>{note}</Paragraph>
@@ -126,7 +132,9 @@ export const PoemDetail: React.FC = () => {
 
         {poem.background && (
           <>
-            <Divider orientation="left">创作背景</Divider>
+            <div className={styles.divider}>
+              <Divider orientation="left">创作背景</Divider>
+            </div>
             <div className={styles.background}>
               <Paragraph>{poem.background}</Paragraph>
             </div>
