@@ -1,9 +1,23 @@
-# React + Vite
+# Ancient Poem
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+这是一个用于测试 GitHub 工作流程的示例项目。
 
-Currently, two official plugins are available:
+## 项目说明
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-# ancient-poem
+本项目用于展示完整的 GitHub 工作流程，包括：
+
+- 议题管理
+- 分支管理
+- 代码提交
+- Pull Request
+- 代码评审
+- 合并代码
+
+## 工作流程
+
+详细的工作流程说明请参考 [GITHUB_WORKFLOW.md](GITHUB_WORKFLOW.md)。
+
+## 测试
+
+这是一个测试更改，用于演示完整的 GitHub 工作流程。
+相关议题: #4
