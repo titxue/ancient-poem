@@ -27,13 +27,18 @@ export const Favorites: React.FC = () => {
   }
 
   return (
-    <div className={styles.container}>
-      <Title level={2} className={styles.title}>
-        我的收藏
-      </Title>
-      <div className={styles.list}>
+    <div className={styles['page-container']}>
+      <div className={styles['page-header']}>
+        <Title level={2} className={styles['page-title']}>
+          我的收藏
+        </Title>
+        <p className={styles['page-subtitle']}>
+          珍藏您喜爱的诗词佳作
+        </p>
+      </div>
+      <div className={styles['page-content']}>
         {favorites.map((poem) => (
-          <PoemCard key={poem.id} poem={poem} />
+          <PoemCard key={poem.id} poem={poem} className={styles['base-card']} />
         ))}
       </div>
     </div>
