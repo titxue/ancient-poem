@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Typography, Input, Menu } from 'antd';
+import { Typography, Input, Menu, Row, Col } from 'antd';
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { HomeOutlined, BookOutlined, UserOutlined } from '@ant-design/icons';
 import type { AppDispatch } from '../../store';
 import { fetchPoems, searchPoems } from '../../store/slices/poemSlice';
@@ -106,7 +105,11 @@ export const Home: React.FC = () => {
         selectedKeys={[currentCategory]}
         onClick={handleMenuClick}
       />
-      <PoemList />
+      <Row gutter={[16, 16]} className={styles.content}>
+        <Col span={24}>
+          <PoemList />
+        </Col>
+      </Row>
     </div>
   );
 }; 

@@ -12,7 +12,15 @@ import { Favorites } from './pages/Favorites';
 export const App: React.FC = () => {
   return (
     <Provider store={store}>
-      <ConfigProvider locale={zhCN}>
+      <ConfigProvider
+        locale={zhCN}
+        theme={{
+          token: {
+            colorPrimary: '#1890ff',
+            borderRadius: 4,
+          },
+        }}
+      >
         <Router>
           <Layout>
             <Routes>
