@@ -1,18 +1,123 @@
 .button {
-  border-radius: 50%;
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: transparent;
+  position: relative;
+  cursor: pointer;
+  outline: none;
   padding: 0;
+  border-radius: 50%;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s;
-
-  &:hover {
-    transform: scale(1.1);
+  
+  &.large {
+    width: 44px;
+    height: 44px;
+    
+    .icon {
+      font-size: 24px;
+      
+      &.filled {
+        font-size: 26px;
+      }
+    }
   }
-
+  
+  &:hover {
+    transform: scale(1.08);
+    background-color: var(--primary-color-outline);
+    
+    .icon {
+      &:not(.filled) {
+        color: var(--primary-color-hover);
+      }
+      &.filled {
+        filter: drop-shadow(0 0 4px var(--primary-color-outline));
+      }
+    }
+  }
+  
   &:active {
-    transform: scale(0.9);
+    transform: scale(0.92);
+  }
+  
+  &.active {
+    .icon {
+      animation: heartBeat 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+  }
+}
+
+.icon {
+  font-size: 20px;
+  color: var(--text-secondary);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  &.filled {
+    font-size: 22px;
+    color: var(--primary-color);
+    background: linear-gradient(45deg, var(--primary-color-active), var(--primary-color-hover));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 1px 2px var(--primary-color-outline));
+  }
+}
+
+@keyframes heartBeat {
+  0% {
+    transform: scale(1);
+  }
+  15% {
+    transform: scale(1.25);
+  }
+  30% {
+    transform: scale(0.95);
+  }
+  45% {
+    transform: scale(1.15);
+  }
+  60% {
+    transform: scale(0.98);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.tooltip {
+  :global(.ant-tooltip-inner) {
+    background-color: var(--card-background);
+    color: var(--text-color);
+    padding: 6px 12px;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    font-size: 13px;
+    backdrop-filter: blur(8px);
+  }
+  
+  :global(.ant-tooltip-arrow-content) {
+    background-color: var(--card-background);
+  }
+}
+
+.ripple {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--primary-color-outline) 0%, rgba(37, 99, 235, 0.05) 70%);
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0);
+  animation: ripple 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  @keyframes ripple {
+    to {
+      transform: translate(-50%, -50%) scale(2.5);
+      opacity: 0;
+    }
   }
 } 
