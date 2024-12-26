@@ -11,8 +11,13 @@
 - 代码提交
 - Pull Request
 - 代码评审
-- 代码合并
+- 合并代码
 
 ## 工作流程
 
 详细的工作流程说明请参考 [GITHUB_WORKFLOW.md](GITHUB_WORKFLOW.md)。
+
+## 测试
+
+这是一个测试更改，用于演示完整的 GitHub 工作流程。
+相关议题: #4
