@@ -1,6 +1,19 @@
 @import '../../styles/layout.scss';
 @import '../../styles/card.scss';
 
+.actions {
+  margin-top: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  
+  .syncTime {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+  }
+}
+
 .empty {
   padding: 48px 24px;
   text-align: center;
