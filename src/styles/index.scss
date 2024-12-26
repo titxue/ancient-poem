@@ -1,5 +1,5 @@
-@use './variables' as *;
-@use './reset';
+@forward './variables';
+@forward './reset';
 
 /* Global styles */
 .container {
