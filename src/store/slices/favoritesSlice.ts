@@ -1,11 +1,13 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from '../index';
 import type { Poem } from '../../types/poem';
+import type { FavoriteSync } from '../../types/favorites';
 import { loadFavorites, saveFavorites } from '../../utils/storage';
 import { favoritesApi } from '../../services/api';
 
 interface FavoritesState {
   items: Poem[];
+  syncData: { [id: number]: number }; // id -> updatedAt 映射
   loading: boolean;
   error: string | null;
   lastSynced: number | null;
@@ -13,6 +15,7 @@ interface FavoritesState {
 
 const initialState: FavoritesState = {
   items: loadFavorites(),
+  syncData: {},
   loading: false,
   error: null,
   lastSynced: null,
@@ -21,20 +24,33 @@ const initialState: FavoritesState = {
 // 从服务器获取收藏数据
 export const fetchFavorites = createAsyncThunk(
   'favorites/fetchFavorites',
-  async () => {
-    const serverFavorites = await favoritesApi.getFavorites();
-    const localFavorites = loadFavorites();
+  async (_, { getState }) => {
+    const state = getState() as RootState;
+    const { lastSynced } = state.favorites;
+    const response = await favoritesApi.getFavorites(lastSynced || undefined);
     
-    // 合并本地和服务器数据，以本地数据为准
-    const mergedFavorites = [...localFavorites];
-    serverFavorites.forEach(serverPoem => {
-      if (!localFavorites.some(localPoem => localPoem.id === serverPoem.id)) {
-        mergedFavorites.push(serverPoem);
-      }
+    // 获取完整的诗词数据
+    const poemPromises = response.favorites.map(async fav => {
+      const poem = await favoritesApi.fetchPoemById(fav.id);
+      return { poem, updatedAt: fav.updatedAt };
     });
     
-    saveFavorites(mergedFavorites);
-    return mergedFavorites;
+    const poemResults = await Promise.all(poemPromises);
+    const poems = poemResults
+      .filter(result => result.poem) // 过滤掉未找到的诗词
+      .map(result => result.poem as Poem);
+    
+    // 更新同步数据
+    const syncData: { [id: number]: number } = {};
+    response.favorites.forEach(fav => {
+      syncData[fav.id] = fav.updatedAt;
+    });
+    
+    return {
+      poems,
+      syncData,
+      serverTime: response.serverTime,
+    };
   }
 );
 
@@ -43,10 +59,38 @@ export const syncFavorites = createAsyncThunk(
   'favorites/syncFavorites',
   async (_, { getState }) => {
     const state = getState() as RootState;
-    const favorites = state.favorites.items;
-    const syncedFavorites = await favoritesApi.syncFavorites(favorites);
-    saveFavorites(syncedFavorites);
-    return syncedFavorites;
+    const { items, syncData, lastSynced } = state.favorites;
+    
+    // 构建同步数据
+    const favorites: FavoriteSync[] = items.map(poem => ({
+      id: poem.id,
+      updatedAt: syncData[poem.id] || Date.now(),
+    }));
+    
+    const response = await favoritesApi.syncFavorites(favorites, lastSynced || undefined);
+    
+    // 获取完整的诗词数据
+    const poemPromises = response.favorites.map(async fav => {
+      const poem = await favoritesApi.fetchPoemById(fav.id);
+      return { poem, updatedAt: fav.updatedAt };
+    });
+    
+    const poemResults = await Promise.all(poemPromises);
+    const poems = poemResults
+      .filter(result => result.poem)
+      .map(result => result.poem as Poem);
+    
+    // 更新同步数据
+    const newSyncData: { [id: number]: number } = {};
+    response.favorites.forEach(fav => {
+      newSyncData[fav.id] = fav.updatedAt;
+    });
+    
+    return {
+      poems,
+      syncData: newSyncData,
+      serverTime: response.serverTime,
+    };
   }
 );
 
@@ -55,11 +99,15 @@ export const favoritesSlice = createSlice({
   initialState,
   reducers: {
     addFavorite: (state, action: PayloadAction<Poem>) => {
-      state.items.push(action.payload);
-      saveFavorites(state.items);
+      if (!state.items.some(item => item.id === action.payload.id)) {
+        state.items.push(action.payload);
+        state.syncData[action.payload.id] = Date.now();
+        saveFavorites(state.items);
+      }
     },
     removeFavorite: (state, action: PayloadAction<number>) => {
       state.items = state.items.filter(poem => poem.id !== action.payload);
+      delete state.syncData[action.payload];
       saveFavorites(state.items);
     },
   },
@@ -71,8 +119,10 @@ export const favoritesSlice = createSlice({
       })
       .addCase(fetchFavorites.fulfilled, (state, action) => {
         state.loading = false;
-        state.items = action.payload;
-        state.lastSynced = Date.now();
+        state.items = action.payload.poems;
+        state.syncData = action.payload.syncData;
+        state.lastSynced = action.payload.serverTime;
+        saveFavorites(state.items);
       })
       .addCase(fetchFavorites.rejected, (state, action) => {
         state.loading = false;
@@ -84,8 +134,10 @@ export const favoritesSlice = createSlice({
       })
       .addCase(syncFavorites.fulfilled, (state, action) => {
         state.loading = false;
-        state.items = action.payload;
-        state.lastSynced = Date.now();
+        state.items = action.payload.poems;
+        state.syncData = action.payload.syncData;
+        state.lastSynced = action.payload.serverTime;
+        saveFavorites(state.items);
       })
       .addCase(syncFavorites.rejected, (state, action) => {
         state.loading = false;
