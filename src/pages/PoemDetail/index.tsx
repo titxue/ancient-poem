@@ -64,9 +64,9 @@ export const PoemDetail: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      <Space className={styles.header}>
+      <div className={styles.header}>
         <Button
-          type="link"
+          type="text"
           icon={<ArrowLeftOutlined />}
           onClick={handleBack}
           className={styles.backButton}
@@ -74,14 +74,15 @@ export const PoemDetail: React.FC = () => {
           返回
         </Button>
         <FavoriteButton poem={poem} size="large" />
-      </Space>
+      </div>
 
-      <Card className={styles.card}>
+      <Card className={styles.card} bordered={false}>
         <Title level={2} className={styles.title}>
           {poem.title}
         </Title>
         <Paragraph className={styles.author}>
-          [{poem.dynasty}] {poem.author}
+          <Text type="secondary">[{poem.dynasty}]</Text>
+          <Text strong> {poem.author}</Text>
         </Paragraph>
 
         <div className={styles.content}>
