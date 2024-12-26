@@ -1,0 +1,48 @@
+.card {
+  width: 100%;
+  margin-bottom: 16px;
+  transition: all 0.3s;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.link {
+  text-decoration: none;
+  color: inherit;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.title {
+  margin-bottom: 8px !important;
+  color: #1a1a1a;
+}
+
+.author {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 16px !important;
+}
+
+.content {
+  margin-bottom: 16px;
+
+  .line {
+    margin-bottom: 4px !important;
+    color: #333;
+    font-size: 16px;
+    line-height: 1.6;
+    text-align: center;
+  }
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+} 
