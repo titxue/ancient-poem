@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Typography, Empty, Button, Radio, Input, Space } from 'antd';
 import { Link } from 'react-router-dom';
-import { HeartOutlined, UnorderedListOutlined, AppstoreOutlined, SearchOutlined } from '@ant-design/icons';
+import { UnorderedListOutlined, AppstoreOutlined } from '@ant-design/icons';
 import type { RootState } from '../../store';
 import { selectFavorites } from '../../store/slices/favoritesSlice';
 import { PoemCard } from '../../components/Poem/PoemCard';
 import styles from './Favorites.module.scss';
 
-const { Title, Text } = Typography;
+const { Title } = Typography;
 const { Search } = Input;
 
 type ViewMode = 'grid' | 'list';
