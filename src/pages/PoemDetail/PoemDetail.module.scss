@@ -24,6 +24,20 @@
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
+.header {
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.backButton {
+  font-size: 16px;
+}
+
+.card {
+  padding: 24px;
+}
 
 .title {
   text-align: center;
@@ -34,6 +48,7 @@
   text-align: center;
   color: #666;
   font-size: 16px;
+  color: rgba(0, 0, 0, 0.45);
   margin-bottom: 32px !important;
 }
 
@@ -46,6 +61,13 @@
     line-height: 1.8;
     margin-bottom: 8px !important;
   }
+  text-align: center;
+}
+
+.line {
+  margin-bottom: 8px !important;
+  font-size: 16px;
+  line-height: 1.8 !important;
 }
 
 .translation,
@@ -65,4 +87,23 @@
   margin-top: 24px;
   padding-top: 24px;
   border-top: 1px solid #f0f0f0;
-} 
+  margin-bottom: 32px;
+  font-size: 14px;
+  line-height: 1.8;
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.tags {
+  margin-top: 24px;
+}
+
+.loading,
+.error,
+.notFound {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+  gap: 16px;
+}

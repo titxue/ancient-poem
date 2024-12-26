@@ -6,6 +6,7 @@ import zhCN from 'antd/locale/zh_CN';
 import { store } from './store';
 import { Home } from './pages/Home';
 import { PoemDetail } from './pages/PoemDetail';
+import { Favorites } from './pages/Favorites';
 
 export const App: React.FC = () => {
   return (
@@ -15,6 +16,7 @@ export const App: React.FC = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/poems/:id" element={<PoemDetail />} />
+            <Route path="/favorites" element={<Favorites />} />
           </Routes>
         </Router>
       </ConfigProvider>

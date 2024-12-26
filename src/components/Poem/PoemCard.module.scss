@@ -1,48 +1,49 @@
 .card {
-  width: 100%;
-  margin-bottom: 16px;
+  height: 100%;
   transition: all 0.3s;
 
   &:hover {
-    transform: translateY(-2px);
+    transform: translateY(-4px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   }
 }
 
 .link {
-  text-decoration: none;
   color: inherit;
+  text-decoration: none;
 
   &:hover {
-    text-decoration: none;
+    color: inherit;
   }
 }
 
 .title {
   margin-bottom: 8px !important;
-  color: #1a1a1a;
+  font-size: 18px !important;
+  line-height: 1.4 !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .author {
-  color: #666;
-  font-size: 14px;
   margin-bottom: 16px !important;
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 14px;
 }
 
 .content {
   margin-bottom: 16px;
+  height: 120px;
+  overflow: hidden;
+}
 
-  .line {
-    margin-bottom: 4px !important;
-    color: #333;
-    font-size: 16px;
-    line-height: 1.6;
-    text-align: center;
-  }
+.line {
+  margin-bottom: 4px !important;
+  font-size: 14px;
+  line-height: 1.6 !important;
 }
 
 .tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
+  margin-top: auto;
 } 
