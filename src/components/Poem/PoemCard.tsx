@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, Tag, Typography } from 'antd';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import type { Poem } from '../../types/poem';
 import { FavoriteButton } from './FavoriteButton';
 import styles from './PoemCard.module.scss';

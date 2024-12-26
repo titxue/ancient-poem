@@ -13,7 +13,7 @@ const { Search } = Input;
 export const Home: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [currentCategory, setCurrentCategory] = useState('all');
-  const { poems, loading, error } = useSelector((state: RootState) => state.poems);
+  const { error } = useSelector((state: RootState) => state.poems);
 
   useEffect(() => {
     dispatch(fetchPoems({ page: 1, pageSize: 12 }));

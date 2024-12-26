@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { Typography, Card, Tag, Button, Divider, Spin, Space } from 'antd';
+import { Typography, Card, Tag, Button, Divider, Spin } from 'antd';
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import type { RootState, AppDispatch } from '../../store';
 import { fetchPoemById } from '../../store/slices/poemSlice';
