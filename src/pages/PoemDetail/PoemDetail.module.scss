@@ -4,32 +4,19 @@
   padding: 24px;
 }
 
-.loading,
-.error,
-.notFound {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 400px;
-  gap: 16px;
-}
-
 .header {
-  margin-bottom: 16px;
+  margin-bottom: 24px;
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
 }
 
 .backButton {
-  margin: 0;
+  font-size: 16px;
 }
 
 .card {
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 24px;
 }
 
 .title {
@@ -39,37 +26,42 @@
 
 .author {
   text-align: center;
-  color: #666;
-  font-size: 16px;
+  color: rgba(0, 0, 0, 0.45);
   margin-bottom: 32px !important;
 }
 
 .content {
   margin-bottom: 32px;
+  text-align: center;
+}
 
-  .line {
-    text-align: center;
-    font-size: 18px;
-    line-height: 1.8;
-    margin-bottom: 8px !important;
-  }
+.line {
+  margin-bottom: 8px !important;
+  font-size: 16px;
+  line-height: 1.8 !important;
 }
 
 .translation,
 .appreciation,
 .notes,
 .background {
-  color: #666;
-  line-height: 1.8;
   margin-bottom: 32px;
-  padding: 0 16px;
+  font-size: 14px;
+  line-height: 1.8;
+  color: rgba(0, 0, 0, 0.65);
 }
 
 .tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
   margin-top: 24px;
-  padding-top: 24px;
-  border-top: 1px solid #f0f0f0;
+}
+
+.loading,
+.error,
+.notFound {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+  gap: 16px;
 } 
