@@ -1,36 +1,20 @@
-import axios from 'axios';
 import type { Poem, PoemListResponse, PoemQueryParams } from '../types/poem';
+import { getPoems, getPoemById, searchPoems } from '../mock/poems';
 
-const api = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL,
-  timeout: Number(import.meta.env.VITE_API_TIMEOUT) || 5000,
-});
+// 模拟网络延迟
+const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
-export const getPoems = async (params: PoemQueryParams): Promise<PoemListResponse> => {
-  const response = await api.get('/poems', { params });
-  return response.data;
+export const fetchPoems = async (params: PoemQueryParams): Promise<PoemListResponse> => {
+  await delay(500); // 模拟网络延迟
+  return getPoems(params.page, params.pageSize);
 };
 
-export const getPoemById = async (id: number): Promise<Poem> => {
-  const response = await api.get(`/poems/${id}`);
-  return response.data;
+export const fetchPoemById = async (id: number): Promise<Poem | undefined> => {
+  await delay(500); // 模拟网络延迟
+  return getPoemById(id);
 };
 
-export const searchPoems = async (params: PoemQueryParams): Promise<PoemListResponse> => {
-  const response = await api.get('/poems/search', {
-    params: {
-      ...params,
-      type: params.dynasty ? 'dynasty' : params.author ? 'author' : 'keyword',
-    },
-  });
-  return response.data;
-};
-
-// 添加错误处理拦截器
-api.interceptors.response.use(
-  (response) => response,
-  (error) => {
-    console.error('API Error:', error);
-    return Promise.reject(error);
-  }
-); 
+export const searchPoemsApi = async (params: PoemQueryParams): Promise<PoemListResponse> => {
+  await delay(500); // 模拟网络延迟
+  return searchPoems(params);
+}; 
