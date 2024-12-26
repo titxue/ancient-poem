@@ -1,5 +1,7 @@
 .layout {
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .header {
@@ -11,6 +13,7 @@
   position: fixed;
   width: 100%;
   z-index: 1000;
+  height: 64px;
 }
 
 .logo {
@@ -32,9 +35,11 @@
   flex: 1;
   border-bottom: none;
   background: transparent;
+  line-height: 64px;
 }
 
 .content {
+  flex: 1;
   padding-top: 64px;
   min-height: calc(100vh - 64px);
   background: #f0f2f5;
