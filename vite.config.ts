@@ -1,7 +1,6 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
-import * as sass from 'sass';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -18,10 +17,8 @@ export default defineConfig({
     },
     preprocessorOptions: {
       scss: {
-        implementation: sass,
-        sassOptions: {
-          outputStyle: 'compressed',
-        },
+        charset: false,
+        additionalData: '@use "@/styles/variables" as *;',
       },
     },
   },
