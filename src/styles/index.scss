@@ -1,5 +1,5 @@
-@import './variables.scss';
-@import './reset.scss';
+@forward './variables';
+@forward './reset';
 
 /* Global styles */
 .container {
