@@ -16,13 +16,8 @@ export const Home: React.FC = () => {
   const { poems, loading, error } = useSelector((state: RootState) => state.poems);
 
   useEffect(() => {
-    console.log('Home component mounted, fetching poems...');
     dispatch(fetchPoems({ page: 1, pageSize: 12 }));
   }, [dispatch]);
-
-  useEffect(() => {
-    console.log('Poems state updated:', { poems, loading, error });
-  }, [poems, loading, error]);
 
   const handleSearch = (value: string) => {
     if (value) {
@@ -87,16 +82,16 @@ export const Home: React.FC = () => {
   ];
 
   if (error) {
-    return <div className={styles.error}>{error}</div>;
+    return <div className={styles['error-message']}>{error}</div>;
   }
 
   return (
-    <div className={styles.container}>
-      <div className={styles.header}>
-        <Title level={2} className={styles.title}>
+    <div className={styles['page-container']}>
+      <div className={styles['page-header']}>
+        <Title level={2} className={styles['page-title']}>
           古诗词网
         </Title>
-        <p className={styles.subtitle}>
+        <p className={styles['page-subtitle']}>
           品味传统文化之美，感受诗词之韵
         </p>
         <Search
@@ -115,7 +110,7 @@ export const Home: React.FC = () => {
         selectedKeys={[currentCategory]}
         onClick={handleMenuClick}
       />
-      <Row gutter={[16, 16]} className={styles.content}>
+      <Row gutter={[16, 16]} className={styles['page-content']}>
         <Col span={24}>
           <PoemList />
         </Col>

@@ -4,14 +4,16 @@ import { Link, useNavigate } from 'react-router-dom';
 import type { Poem } from '../../types/poem';
 import { FavoriteButton } from './FavoriteButton';
 import styles from './PoemCard.module.scss';
+import classNames from 'classnames';
 
 const { Title, Paragraph } = Typography;
 
 interface PoemCardProps {
   poem: Poem;
+  className?: string;
 }
 
-export const PoemCard: React.FC<PoemCardProps> = ({ poem }) => {
+export const PoemCard: React.FC<PoemCardProps> = ({ poem, className }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -20,7 +22,7 @@ export const PoemCard: React.FC<PoemCardProps> = ({ poem }) => {
 
   return (
     <Card
-      className={styles.card}
+      className={classNames(styles.card, className)}
       hoverable
       onClick={handleClick}
       extra={<FavoriteButton poem={poem} size="small" />}
