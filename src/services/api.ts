@@ -17,7 +17,12 @@ export const getPoemById = async (id: number): Promise<Poem> => {
 };
 
 export const searchPoems = async (params: PoemQueryParams): Promise<PoemListResponse> => {
-  const response = await api.get('/poems/search', { params });
+  const response = await api.get('/poems/search', {
+    params: {
+      ...params,
+      type: params.dynasty ? 'dynasty' : params.author ? 'author' : 'keyword',
+    },
+  });
   return response.data;
 };
 

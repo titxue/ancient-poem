@@ -11,6 +11,7 @@ interface PoemState {
   loading: boolean;
   error: string | null;
   selectedPoem: Poem | null;
+  currentCategory: string;
 }
 
 const initialState: PoemState = {
@@ -21,6 +22,7 @@ const initialState: PoemState = {
   loading: false,
   error: null,
   selectedPoem: null,
+  currentCategory: 'all',
 };
 
 // Async thunks
@@ -57,6 +59,9 @@ const poemSlice = createSlice({
     },
     setPageSize: (state, action: PayloadAction<number>) => {
       state.pageSize = action.payload;
+    },
+    setCurrentCategory: (state, action: PayloadAction<string>) => {
+      state.currentCategory = action.payload;
     },
     clearSelectedPoem: (state) => {
       state.selectedPoem = null;
@@ -108,5 +113,5 @@ const poemSlice = createSlice({
   },
 });
 
-export const { setCurrentPage, setPageSize, clearSelectedPoem } = poemSlice.actions;
+export const { setCurrentPage, setPageSize, setCurrentCategory, clearSelectedPoem } = poemSlice.actions;
 export default poemSlice.reducer; 

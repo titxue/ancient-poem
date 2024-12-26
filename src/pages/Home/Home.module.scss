@@ -6,7 +6,10 @@
 
 .header {
   text-align: center;
-  margin-bottom: 48px;
+  margin-bottom: 32px;
+  padding: 48px 0;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  border-radius: 8px;
 }
 
 .title {
@@ -23,4 +26,29 @@
 .search {
   max-width: 600px;
   margin: 0 auto;
+}
+
+.menu {
+  margin-bottom: 24px;
+  padding: 0 16px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+
+  :global {
+    .ant-menu-item,
+    .ant-menu-submenu {
+      padding: 0 24px;
+      margin: 0 4px;
+
+      &:hover {
+        color: #1890ff;
+      }
+
+      &.ant-menu-item-selected {
+        color: #1890ff;
+        background: rgba(24, 144, 255, 0.1);
+      }
+    }
+  }
 } 
