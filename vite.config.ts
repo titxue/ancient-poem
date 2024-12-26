@@ -18,7 +18,11 @@ export default defineConfig({
     preprocessorOptions: {
       scss: {
         charset: false,
-        additionalData: '@use "@/styles/variables" as *;',
+        additionalData: `
+          @use "sass:math";
+          @use "sass:color";
+          @use "@/styles/variables" as *;
+        `,
       },
     },
   },
