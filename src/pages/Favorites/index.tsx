@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Typography, Empty, Button, Spin, message } from 'antd';
 import { Link } from 'react-router-dom';
@@ -23,21 +23,27 @@ export const Favorites: React.FC = () => {
   const loading = useSelector(selectFavoritesLoading);
   const error = useSelector(selectFavoritesError);
   const lastSynced = useSelector(selectLastSynced);
+  const [syncing, setSyncing] = useState(false);
 
   useEffect(() => {
-    dispatch(fetchFavorites());
-  }, [dispatch]);
+    if (!lastSynced) {
+      dispatch(fetchFavorites());
+    }
+  }, [dispatch, lastSynced]);
 
   const handleSync = async () => {
     try {
+      setSyncing(true);
       await dispatch(syncFavorites()).unwrap();
       message.success('收藏数据同步成功');
     } catch (error) {
       message.error('同步失败，请稍后重试');
+    } finally {
+      setSyncing(false);
     }
   };
 
-  if (loading) {
+  if (loading && !favorites.length) {
     return (
       <div className={styles.loading}>
         <Spin size="large" />
@@ -45,7 +51,7 @@ export const Favorites: React.FC = () => {
     );
   }
 
-  if (error) {
+  if (error && !favorites.length) {
     return (
       <div className={styles['error-message']}>
         <p>{error}</p>
@@ -82,11 +88,11 @@ export const Favorites: React.FC = () => {
         <div className={styles.actions}>
           <Button
             type="primary"
-            icon={<SyncOutlined />}
+            icon={<SyncOutlined spin={syncing} />}
             onClick={handleSync}
-            loading={loading}
+            loading={syncing}
           >
-            同步收藏
+            {syncing ? '同步中' : '同步收藏'}
           </Button>
           {lastSynced && (
             <span className={styles.syncTime}>
@@ -96,6 +102,11 @@ export const Favorites: React.FC = () => {
         </div>
       </div>
       <div className={styles['page-content']}>
+        {loading && !syncing && (
+          <div className={styles.overlay}>
+            <Spin size="large" />
+          </div>
+        )}
         {favorites.map((poem) => (
           <PoemCard key={poem.id} poem={poem} className={styles['base-card']} />
         ))}
