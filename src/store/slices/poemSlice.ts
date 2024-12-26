@@ -29,7 +29,7 @@ const initialState: PoemState = {
 export const fetchPoems = createAsyncThunk(
   'poems/fetchPoems',
   async (params: PoemQueryParams) => {
-    const response = await api.getPoems(params);
+    const response = await api.fetchPoems(params);
     return response;
   }
 );
@@ -37,7 +37,10 @@ export const fetchPoems = createAsyncThunk(
 export const fetchPoemById = createAsyncThunk(
   'poems/fetchPoemById',
   async (id: number) => {
-    const response = await api.getPoemById(id);
+    const response = await api.fetchPoemById(id);
+    if (!response) {
+      throw new Error('诗词不存在');
+    }
     return response;
   }
 );
@@ -45,7 +48,7 @@ export const fetchPoemById = createAsyncThunk(
 export const searchPoems = createAsyncThunk(
   'poems/searchPoems',
   async (params: PoemQueryParams) => {
-    const response = await api.searchPoems(params);
+    const response = await api.searchPoemsApi(params);
     return response;
   }
 );

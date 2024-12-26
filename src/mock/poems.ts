@@ -149,7 +149,7 @@ export const searchPoems = (params: PoemQueryParams): PoemListResponse => {
   }
   
   if (params.tag) {
-    filtered = filtered.filter(poem => poem.tags.includes(params.tag));
+    filtered = filtered.filter(poem => poem.tags.includes(params.tag as string));
   }
   
   const start = (params.page - 1) * params.pageSize;

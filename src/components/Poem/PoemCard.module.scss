@@ -21,29 +21,34 @@
   margin-bottom: 8px !important;
   font-size: 18px !important;
   line-height: 1.4 !important;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  color: #1890ff;
 }
 
 .author {
-  margin-bottom: 16px !important;
-  color: rgba(0, 0, 0, 0.45);
+  margin-bottom: 12px !important;
+  color: #666;
   font-size: 14px;
 }
 
 .content {
   margin-bottom: 16px;
-  height: 120px;
-  overflow: hidden;
 }
 
 .line {
   margin-bottom: 4px !important;
   font-size: 14px;
   line-height: 1.6 !important;
+  color: #333;
+  
+  &:last-child {
+    margin-bottom: 0 !important;
+  }
 }
 
 .tags {
   margin-top: auto;
+  
+  :global(.ant-tag) {
+    margin-bottom: 4px;
+  }
 } 

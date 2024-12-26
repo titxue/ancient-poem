@@ -1,29 +1,31 @@
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
   padding: 24px;
+  min-height: 100vh;
+  background-color: #f0f2f5;
 }
 
 .header {
   text-align: center;
   margin-bottom: 32px;
   padding: 48px 0;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-  border-radius: 8px;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
 .title {
   margin-bottom: 16px !important;
-  color: #1a1a1a;
+  color: #1890ff !important;
 }
 
 .subtitle {
   margin-bottom: 24px;
-  color: rgba(0, 0, 0, 0.45);
+  color: #666;
   font-size: 16px;
 }
 
 .search {
+  width: 100%;
   max-width: 600px;
   margin: 0 auto;
 }
@@ -31,24 +33,23 @@
 .menu {
   margin-bottom: 24px;
   padding: 0 16px;
-  background: #fff;
-  border-radius: 8px;
+  background-color: #fff;
+  border-radius: 4px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
 
-  :global {
-    .ant-menu-item,
-    .ant-menu-submenu {
-      padding: 0 24px;
-      margin: 0 4px;
+.content {
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
 
-      &:hover {
-        color: #1890ff;
-      }
-
-      &.ant-menu-item-selected {
-        color: #1890ff;
-        background: rgba(24, 144, 255, 0.1);
-      }
-    }
-  }
+.error {
+  padding: 24px;
+  text-align: center;
+  color: #ff4d4f;
+  font-size: 16px;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 } 
