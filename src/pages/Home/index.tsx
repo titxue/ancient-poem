@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Typography, Input, Menu, Row, Col } from 'antd';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { HomeOutlined, BookOutlined, UserOutlined } from '@ant-design/icons';
-import type { AppDispatch } from '../../store';
+import type { AppDispatch, RootState } from '../../store';
 import { fetchPoems, searchPoems } from '../../store/slices/poemSlice';
 import { PoemList } from '../../components/Poem/PoemList';
 import styles from './Home.module.scss';
@@ -13,10 +13,16 @@ const { Search } = Input;
 export const Home: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [currentCategory, setCurrentCategory] = useState('all');
+  const { poems, loading, error } = useSelector((state: RootState) => state.poems);
 
   useEffect(() => {
+    console.log('Home component mounted, fetching poems...');
     dispatch(fetchPoems({ page: 1, pageSize: 12 }));
   }, [dispatch]);
+
+  useEffect(() => {
+    console.log('Poems state updated:', { poems, loading, error });
+  }, [poems, loading, error]);
 
   const handleSearch = (value: string) => {
     if (value) {
@@ -79,6 +85,10 @@ export const Home: React.FC = () => {
       ],
     },
   ];
+
+  if (error) {
+    return <div className={styles.error}>{error}</div>;
+  }
 
   return (
     <div className={styles.container}>
