@@ -1,0 +1,22 @@
+.themeToggle {
+  font-size: 20px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background-color: var(--card-background);
+  }
+  
+  :global(.anticon) {
+    transition: transform 0.3s ease;
+  }
+  
+  &:hover :global(.anticon) {
+    transform: rotate(30deg);
+  }
+} 
