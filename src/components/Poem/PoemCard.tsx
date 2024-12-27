@@ -27,7 +27,11 @@ export const PoemCard: React.FC<PoemCardProps> = ({ poem, className }) => {
       onClick={handleClick}
       extra={<FavoriteButton poem={poem} size="small" />}
     >
-      <Title level={4} className={styles.title}>
+      <Title 
+        level={4} 
+        className={styles.title}
+        style={{ margin: 0 }}
+      >
         {poem.title}
       </Title>
       <Paragraph className={styles.author}>

@@ -30,10 +30,10 @@
   --background-color: var(--gray-1);
   --component-background: var(--gray-2);
   --border-color: var(--gray-4);
-  --text-color: var(--gray-10);
-  --text-color-secondary: var(--gray-8);
-  --text-color-tertiary: var(--gray-7);
-  --heading-color: var(--gray-10);
+  --text-color: #2c3e50;  // 更有质感的主文本色
+  --text-color-secondary: #34495e;  // 次要文本色
+  --text-color-tertiary: #7f8c8d;  // 辅助文本色
+  --heading-color: #1a2a3a;  // 标题文本色
   --disabled-color: var(--gray-6);
   --disabled-bg: var(--gray-3);
   --icon-color: var(--gray-7);
@@ -56,8 +56,8 @@
   --menu-item-active-bg: var(--primary-color-outline);
 
   // 诗词相关变量
-  --poem-title-color: var(--gray-10);
-  --poem-author-color: var(--gray-8);
+  --poem-title-color: var(--primary-color);
+  --poem-author-color: var(--text-color-secondary);
   --poem-content-bg: rgba(24, 144, 255, 0.04);
 
   // 主题过渡配置
@@ -79,33 +79,52 @@
 
 // 暗色主题变量覆盖
 body.dark-theme {
+  // 主色调优化
+  --primary-color: #177ddc;
+  --primary-color-hover: #3c9ae8;
+  --primary-color-active: #0958d9;
+  --primary-color-outline: rgba(23, 125, 220, 0.2);
+
   // 功能色变量 - 暗色主题
-  --background-color: var(--gray-12);
-  --component-background: var(--gray-11);
-  --border-color: var(--gray-9);
-  --text-color: rgba(255, 255, 255, 0.85);
-  --text-color-secondary: rgba(255, 255, 255, 0.65);
-  --text-color-tertiary: rgba(255, 255, 255, 0.45);
-  --heading-color: rgba(255, 255, 255, 0.85);
-  --disabled-color: rgba(255, 255, 255, 0.35);
-  --disabled-bg: var(--gray-10);
-  --icon-color: rgba(255, 255, 255, 0.65);
+  --background-color: #0a0a0a;  // 更深的背景色
+  --component-background: #141414;  // 组件背景色
+  --border-color: #303030;  // 柔和的边框色
+  --text-color: rgba(255, 255, 255, 0.85);  // 主要文本
+  --text-color-secondary: rgba(23, 125, 220, 0.75);  // 次要文本色
+  --text-color-tertiary: rgba(23, 125, 220, 0.55);   // 辅助文本色
+  --heading-color: rgba(23, 125, 220, 0.95);         // 与主题色调和
+  --disabled-color: rgba(23, 125, 220, 0.35);        // 与主题色调和
+  --disabled-bg: #262626;
+  --icon-color: rgba(23, 125, 220, 0.75);            // 与主题色调和
+  --link-color: #177ddc;
+  --link-hover-color: #3c9ae8;
+  --link-active-color: #0958d9;
 
   // 组件变量覆盖
-  --card-background: var(--gray-11);
-  --card-hover-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-  --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  --card-background: #141414;
+  --card-hover-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);  // 更强的阴影
+  --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --card-radius: 8px;
+  --card-padding: 24px;
 
   // 导航菜单变量覆盖
-  --menu-background: var(--gray-12);
-  --menu-text-color: var(--text-color);
-  --submenu-background: var(--gray-11);
-  --menu-item-active-bg: rgba(24, 144, 255, 0.15);
+  --menu-background: #0a0a0a;
+  --menu-text-color: rgba(23, 125, 220, 0.85);       // 菜单文本色
+  --menu-hover-color: #3c9ae8;                       // 菜单悬浮色
+  --submenu-background: #141414;
+  --menu-item-active-bg: rgba(23, 125, 220, 0.15);
 
   // 诗词相关变量覆盖
-  --poem-title-color: rgba(255, 255, 255, 0.95);
-  --poem-author-color: rgba(255, 255, 255, 0.75);
-  --poem-content-bg: rgba(24, 144, 255, 0.08);
+  --poem-title-color: var(--primary-color);      // 使用主题色作为标题色
+  --poem-author-color: rgba(23, 125, 220, 0.75); // 作者信息色
+  --poem-content-bg: rgba(23, 125, 220, 0.08);   // 内容背景色
+
+  // 下拉菜单变量覆盖
+  --ancient-dropdown-bg: #141414;
+  --ancient-dropdown-border: #303030;
+  --ancient-dropdown-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+  --ancient-dropdown-text: rgba(23, 125, 220, 0.85);       // 下拉菜单文本色
+  --ancient-dropdown-hover-bg: rgba(23, 125, 220, 0.15);
 
   &::before {
     content: '';
@@ -163,6 +182,12 @@ body {
 
   &.theme-transition-active.dark-theme::before {
     opacity: 1;
+  }
+
+  // 文本选中样式
+  ::selection {
+    background: var(--primary-color);
+    color: #ffffff;
   }
 }
 
@@ -271,17 +296,25 @@ body.dark-theme {
   background: var(--card-background);
   border: 1px solid var(--border-color);
   box-shadow: var(--card-shadow);
+  transition: all var(--theme-duration) var(--theme-easing);
 
   .poem-title {
     color: var(--poem-title-color);
+    transition: color var(--theme-duration) var(--theme-easing);
+    
+    &:hover {
+      color: var(--primary-color-hover);
+    }
   }
 
   .poem-author {
     color: var(--poem-author-color);
+    transition: color var(--theme-duration) var(--theme-easing);
   }
 
   .poem-content {
     background-color: var(--poem-content-bg);
+    transition: background-color var(--theme-duration) var(--theme-easing);
   }
 }
 
@@ -460,5 +493,42 @@ body.dark-theme {
         }
       }
     }
+  }
+}
+
+// 全局文本样式增强
+body {
+  // ... existing code ...
+
+  // 文本选中样式
+  ::selection {
+    background: var(--primary-color);
+    color: #ffffff;
+  }
+}
+
+// 标题样式增强
+h1, h2, h3, h4, h5, h6 {
+  color: var(--heading-color);
+  font-weight: 600;
+}
+
+// 段落文本样式
+p {
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+// 链接样式
+a {
+  color: var(--link-color);
+  transition: color var(--theme-duration) var(--theme-easing);
+
+  &:hover {
+    color: var(--link-hover-color);
+  }
+
+  &:active {
+    color: var(--link-active-color);
   }
 } 

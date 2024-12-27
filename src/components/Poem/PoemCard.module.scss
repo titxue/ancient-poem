@@ -4,7 +4,7 @@
   background: var(--card-background);
   border-radius: var(--card-radius);
   box-shadow: var(--card-shadow);
-  transition: all var(--transition-duration) var(--transition-timing);
+  transition: all var(--theme-duration) var(--theme-easing);
   cursor: pointer;
   position: relative;
   overflow: hidden;
@@ -19,7 +19,7 @@
     height: 4px;
     background: linear-gradient(90deg, var(--primary-color), var(--primary-color-hover));
     opacity: 0;
-    transition: opacity var(--transition-duration) var(--transition-timing);
+    transition: opacity var(--theme-duration) var(--theme-easing);
   }
   
   &:hover {
@@ -30,9 +30,9 @@
     &::before {
       opacity: 1;
     }
-    
+
     .title {
-      color: var(--primary-color);
+      color: var(--primary-color-hover) !important;
     }
   }
 }
@@ -50,12 +50,35 @@
   margin-bottom: 16px !important;
   font-size: 22px !important;
   line-height: 1.4 !important;
-  color: var(--text-color);
-  transition: color var(--transition-duration) var(--transition-timing);
-  font-weight: 600;
+  color: var(--poem-title-color) !important;
+  transition: color var(--theme-duration) var(--theme-easing) !important;
+  font-weight: 600 !important;
+  
+  :global(.ant-typography) {
+    color: inherit !important;
+  }
   
   &:hover {
-    color: var(--primary-color);
+    color: var(--primary-color-hover) !important;
+  }
+}
+
+// 暗色主题下的标题样式
+:global(body.dark-theme) {
+  .title {
+    color: var(--poem-title-color) !important;
+
+    &:hover {
+      color: var(--primary-color-hover) !important;
+    }
+
+    :global(.ant-typography) {
+      color: inherit !important;
+
+      &:hover {
+        color: inherit !important;
+      }
+    }
   }
 }
 
