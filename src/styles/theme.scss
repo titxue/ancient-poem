@@ -89,42 +89,42 @@ body.dark-theme {
   --background-color: #0a0a0a;  // 更深的背景色
   --component-background: #141414;  // 组件背景色
   --border-color: #303030;  // 柔和的边框色
-  --text-color: rgba(255, 255, 255, 0.85);  // 主要文本
-  --text-color-secondary: rgba(23, 125, 220, 0.75);  // 次要文本色
-  --text-color-tertiary: rgba(23, 125, 220, 0.55);   // 辅助文本色
-  --heading-color: rgba(23, 125, 220, 0.95);         // 与主题色调和
-  --disabled-color: rgba(23, 125, 220, 0.35);        // 与主题色调和
+  --text-color: rgba(255, 255, 255, 0.95);  // 提高主要文本对比度
+  --text-color-secondary: rgba(255, 255, 255, 0.85);  // 提高次要文本对比度
+  --text-color-tertiary: rgba(255, 255, 255, 0.65);   // 提高辅助文本对比度
+  --heading-color: #ffffff;  // 标题使用纯白色提高对比度
+  --disabled-color: rgba(255, 255, 255, 0.45);        // 提高禁用状态对比度
   --disabled-bg: #262626;
-  --icon-color: rgba(23, 125, 220, 0.75);            // 与主题色调和
-  --link-color: #177ddc;
-  --link-hover-color: #3c9ae8;
-  --link-active-color: #0958d9;
+  --icon-color: rgba(255, 255, 255, 0.85);            // 提高图标对比度
+  --link-color: #40a9ff;  // 更亮的链接色
+  --link-hover-color: #69c0ff;  // 更亮的链接悬浮色
+  --link-active-color: #096dd9;
 
   // 组件变量覆盖
   --card-background: #141414;
-  --card-hover-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);  // 更强的阴影
+  --card-hover-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
   --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   --card-radius: 8px;
   --card-padding: 24px;
 
   // 导航菜单变量覆盖
   --menu-background: #0a0a0a;
-  --menu-text-color: rgba(23, 125, 220, 0.85);       // 菜单文本色
-  --menu-hover-color: #3c9ae8;                       // 菜单悬浮色
+  --menu-text-color: rgba(255, 255, 255, 0.95);       // 提高菜单文本对比度
+  --menu-hover-color: #40a9ff;                        // 更亮的菜单悬浮色
   --submenu-background: #141414;
-  --menu-item-active-bg: rgba(23, 125, 220, 0.15);
+  --menu-item-active-bg: rgba(64, 169, 255, 0.15);    // 更亮的激活背景色
 
   // 诗词相关变量覆盖
-  --poem-title-color: var(--primary-color);      // 使用主题色作为标题色
-  --poem-author-color: rgba(23, 125, 220, 0.75); // 作者信息色
-  --poem-content-bg: rgba(23, 125, 220, 0.08);   // 内容背景色
+  --poem-title-color: #40a9ff;      // 更亮的标题色
+  --poem-author-color: rgba(255, 255, 255, 0.85);  // 提高作者信息对比度
+  --poem-content-bg: rgba(64, 169, 255, 0.08);     // 更亮的内容背景色
 
   // 下拉菜单变量覆盖
   --ancient-dropdown-bg: #141414;
   --ancient-dropdown-border: #303030;
   --ancient-dropdown-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
-  --ancient-dropdown-text: rgba(23, 125, 220, 0.85);       // 下拉菜单文本色
-  --ancient-dropdown-hover-bg: rgba(23, 125, 220, 0.15);
+  --ancient-dropdown-text: rgba(255, 255, 255, 0.95);  // 提高下拉菜单文本对比度
+  --ancient-dropdown-hover-bg: rgba(64, 169, 255, 0.15);  // 更亮的悬浮背景色
 
   &::before {
     content: '';
