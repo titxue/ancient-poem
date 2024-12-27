@@ -17,6 +17,13 @@ if (initialState.isDarkMode) {
   document.body.classList.add('dark-theme');
 }
 
+const applyThemeTransition = () => {
+  document.body.classList.add('theme-transition-active');
+  setTimeout(() => {
+    document.body.classList.remove('theme-transition-active');
+  }, 600); // 与 CSS 中的过渡时间相匹配
+};
+
 export const themeSlice = createSlice({
   name: 'theme',
   initialState,
@@ -32,6 +39,7 @@ export const themeSlice = createSlice({
         localStorage.setItem('theme', 'light');
       }
       localStorage.setItem('followSystem', 'false');
+      applyThemeTransition();
     },
     setTheme: (state, action: PayloadAction<boolean>) => {
       state.isDarkMode = action.payload;
@@ -42,6 +50,7 @@ export const themeSlice = createSlice({
         document.body.classList.remove('dark-theme');
         localStorage.setItem('theme', 'light');
       }
+      applyThemeTransition();
     },
     toggleFollowSystem: (state) => {
       state.followSystem = !state.followSystem;
@@ -58,6 +67,7 @@ export const themeSlice = createSlice({
           document.body.classList.remove('dark-theme');
           localStorage.setItem('theme', 'light');
         }
+        applyThemeTransition();
       }
     },
   },
