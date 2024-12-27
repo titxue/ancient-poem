@@ -1,13 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit';
-import poemReducer from './slices/poemSlice.ts';
-import favoritesReducer from './slices/favoritesSlice.ts';
-import themeReducer from './slices/themeSlice.ts';
+import poemReducer from './slices/poemSlice';
+import favoritesReducer from './slices/favoritesSlice';
+import themeReducer from './slices/themeSlice';
+import searchReducer from './slices/searchSlice';
 
 export const store = configureStore({
   reducer: {
     poems: poemReducer,
     favorites: favoritesReducer,
     theme: themeReducer,
+    search: searchReducer,
   },
 });
 

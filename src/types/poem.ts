@@ -24,6 +24,6 @@ export interface PoemQueryParams {
   keyword?: string;
   dynasty?: string;
   author?: string;
-  tag?: string;
+  tag?: string[];
   category?: string;
 } 

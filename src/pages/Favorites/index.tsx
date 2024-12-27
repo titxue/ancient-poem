@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Typography, Empty, Button, Spin, message, Row, Col } from 'antd';
 import { Link } from 'react-router-dom';
 import { SyncOutlined } from '@ant-design/icons';
-import type { AppDispatch, RootState } from '../../store';
+import type { AppDispatch } from '../../store';
 import {
   selectFavorites,
   selectFavoritesLoading,
