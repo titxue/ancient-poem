@@ -65,16 +65,6 @@
   --theme-easing: cubic-bezier(0.4, 0, 0.2, 1);
 
   // Component Tokens - 组件令牌
-  --ancient-dropdown-bg: var(--gray-1);
-  --ancient-dropdown-bg-dark: var(--gray-11);
-  --ancient-dropdown-border: var(--gray-4);
-  --ancient-dropdown-border-dark: var(--gray-9);
-  --ancient-dropdown-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  --ancient-dropdown-shadow-dark: 0 2px 8px rgba(0, 0, 0, 0.3);
-  --ancient-dropdown-text: var(--gray-10);
-  --ancient-dropdown-text-dark: rgba(255, 255, 255, 0.85);
-  --ancient-dropdown-hover-bg: var(--primary-color-outline);
-  --ancient-dropdown-hover-bg-dark: var(--gray-10);
 }
 
 // 暗色主题变量覆盖
@@ -118,13 +108,6 @@ body.dark-theme {
   --poem-title-color: #40a9ff;      // 更亮的标题色
   --poem-author-color: rgba(255, 255, 255, 0.85);  // 提高作者信息对比度
   --poem-content-bg: rgba(64, 169, 255, 0.08);     // 更亮的内容背景色
-
-  // 下拉菜单变量覆盖
-  --ancient-dropdown-bg: #141414;
-  --ancient-dropdown-border: #303030;
-  --ancient-dropdown-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
-  --ancient-dropdown-text: rgba(255, 255, 255, 0.95);  // 提高下拉菜单文本对比度
-  --ancient-dropdown-hover-bg: rgba(64, 169, 255, 0.15);  // 更亮的悬浮背景色
 
   &::before {
     content: '';
