@@ -1,46 +1,55 @@
 .layout {
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
 }
 
 .header {
   display: flex;
   align-items: center;
   padding: 0 24px;
-  background: #fff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-  position: fixed;
-  width: 100%;
-  z-index: 1000;
-  height: 64px;
+  background: var(--background-color);
+  border-bottom: 1px solid var(--border-color);
+  transition: all var(--transition-duration);
 }
 
 .logo {
-  margin-right: 40px;
-  font-size: 20px;
-  font-weight: bold;
-
+  margin-right: 24px;
+  
   a {
-    color: #1a1a1a;
+    color: var(--text-color);
+    font-size: 20px;
+    font-weight: bold;
     text-decoration: none;
-
+    transition: color var(--transition-duration);
+    
     &:hover {
-      color: #1890ff;
+      color: var(--primary-color);
     }
   }
 }
 
 .menu {
   flex: 1;
-  border-bottom: none;
   background: transparent;
-  line-height: 64px;
+  border-bottom: none;
+  
+  :global(.ant-menu-item) {
+    color: var(--text-color);
+    transition: color var(--transition-duration);
+    
+    &:hover {
+      color: var(--primary-color);
+    }
+  }
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .content {
-  flex: 1;
-  padding-top: 64px;
-  min-height: calc(100vh - 64px);
-  background: #f0f2f5;
+  padding: 24px;
+  background: var(--background-color);
+  transition: background-color var(--transition-duration);
 } 
