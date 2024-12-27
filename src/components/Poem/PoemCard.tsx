@@ -13,17 +13,17 @@ interface PoemCardProps {
 
 export const PoemCard: React.FC<PoemCardProps> = ({ poem, className }) => {
   return (
-    <Link to={`/poems/${poem.id}`} data-testid="poem-card">
-      <Card
-        hoverable
-        className={`${styles.card} ${className || ''}`}
-        extra={
-          <Space size={8}>
-            <ShareButton poem={poem} />
-            <FavoriteButton poem={poem} />
-          </Space>
-        }
-      >
+    <Card
+      hoverable
+      className={`${styles.card} ${className || ''}`}
+      extra={
+        <Space size={8}>
+          <ShareButton poem={poem} />
+          <FavoriteButton poem={poem} />
+        </Space>
+      }
+    >
+      <Link to={`/poems/${poem.id}`} className={styles.cardContent} data-testid="poem-card">
         <Typography.Title level={4} className={styles.title} style={{ margin: 0 }}>
           {poem.title}
         </Typography.Title>
@@ -56,7 +56,7 @@ export const PoemCard: React.FC<PoemCardProps> = ({ poem, className }) => {
             </Tag>
           ))}
         </div>
-      </Card>
-    </Link>
+      </Link>
+    </Card>
   );
 }; 
