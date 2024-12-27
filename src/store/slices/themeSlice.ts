@@ -4,10 +4,12 @@ import type { RootState } from '../index';
 
 interface ThemeState {
   isDarkMode: boolean;
+  followSystem: boolean;
 }
 
 const initialState: ThemeState = {
   isDarkMode: localStorage.getItem('theme') === 'dark',
+  followSystem: localStorage.getItem('followSystem') === 'true',
 };
 
 // 初始化时应用主题
@@ -21,6 +23,7 @@ export const themeSlice = createSlice({
   reducers: {
     toggleTheme: (state) => {
       state.isDarkMode = !state.isDarkMode;
+      state.followSystem = false;
       if (state.isDarkMode) {
         document.body.classList.add('dark-theme');
         localStorage.setItem('theme', 'dark');
@@ -28,6 +31,7 @@ export const themeSlice = createSlice({
         document.body.classList.remove('dark-theme');
         localStorage.setItem('theme', 'light');
       }
+      localStorage.setItem('followSystem', 'false');
     },
     setTheme: (state, action: PayloadAction<boolean>) => {
       state.isDarkMode = action.payload;
@@ -39,11 +43,29 @@ export const themeSlice = createSlice({
         localStorage.setItem('theme', 'light');
       }
     },
+    toggleFollowSystem: (state) => {
+      state.followSystem = !state.followSystem;
+      localStorage.setItem('followSystem', state.followSystem.toString());
+      
+      if (state.followSystem) {
+        // 如果开启系统跟随，立即应用系统主题
+        const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        state.isDarkMode = isDarkMode;
+        if (isDarkMode) {
+          document.body.classList.add('dark-theme');
+          localStorage.setItem('theme', 'dark');
+        } else {
+          document.body.classList.remove('dark-theme');
+          localStorage.setItem('theme', 'light');
+        }
+      }
+    },
   },
 });
 
-export const { toggleTheme, setTheme } = themeSlice.actions;
+export const { toggleTheme, setTheme, toggleFollowSystem } = themeSlice.actions;
 
 export const selectIsDarkMode = (state: RootState) => state.theme.isDarkMode;
+export const selectFollowSystem = (state: RootState) => state.theme.followSystem;
 
 export default themeSlice.reducer; 
