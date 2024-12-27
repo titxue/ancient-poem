@@ -3,6 +3,7 @@ import { Layout as AntLayout, Menu } from 'antd';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { HomeOutlined, HeartOutlined } from '@ant-design/icons';
 import { ThemeToggle } from '../ThemeToggle';
+import { SystemThemeToggle } from '../SystemThemeToggle';
 import styles from './Layout.module.scss';
 
 const { Header, Content } = AntLayout;
@@ -47,6 +48,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
         />
         <div className={styles.actions}>
           <ThemeToggle />
+          <SystemThemeToggle />
         </div>
       </Header>
       <Content className={styles.content}>{children}</Content>
