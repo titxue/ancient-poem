@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Card, Typography, Tag } from 'antd';
+import { Card, Typography, Tag, Space } from 'antd';
 import { FavoriteButton } from './FavoriteButton';
+import { ShareButton } from '../Share';
 import type { Poem } from '@/types/poem';
 import styles from './PoemCard.module.scss';
 
@@ -16,7 +17,12 @@ export const PoemCard: React.FC<PoemCardProps> = ({ poem, className }) => {
       <Card
         hoverable
         className={`${styles.card} ${className || ''}`}
-        extra={<FavoriteButton poem={poem} />}
+        extra={
+          <Space size={8}>
+            <ShareButton poem={poem} />
+            <FavoriteButton poem={poem} />
+          </Space>
+        }
       >
         <Typography.Title level={4} className={styles.title} style={{ margin: 0 }}>
           {poem.title}
