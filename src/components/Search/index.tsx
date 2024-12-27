@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Input, Button, Drawer, Form, Select, Space, AutoComplete } from 'antd';
-import { SettingOutlined, CloseOutlined } from '@ant-design/icons';
+import { Input, Button, Drawer, Form, Select, Space, AutoComplete, Divider, Typography } from 'antd';
+import { SettingOutlined, CloseOutlined, SearchOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
 import type { AppDispatch, RootState } from '../../store';
 import {
@@ -14,6 +14,7 @@ import { getSuggestions } from '../../mock/poems';
 import styles from './Search.module.scss';
 
 const { Option } = Select;
+const { Text } = Typography;
 
 // 预设选项
 const DYNASTIES = [
@@ -52,7 +53,7 @@ const TAGS = [
   { label: '思乡', value: '思乡' },
   { label: '爱情', value: '爱情' },
   { label: '友情', value: '友情' },
-  { label: '��别', value: '离别' },
+  { label: '离别', value: '离别' },
   { label: '思念', value: '思念' },
   { label: '写景', value: '写景' },
   { label: '抒情', value: '抒情' },
@@ -120,10 +121,19 @@ const SearchComponent: React.FC = () => {
     }
   };
 
-  const options = suggestions.map((suggestion) => ({
-    value: suggestion,
-    label: suggestion,
-  }));
+  const renderTitle = (title: string) => (
+    <Text className={styles.suggestionTitle}>{title}</Text>
+  );
+
+  const options = suggestions.length > 0 ? [
+    {
+      label: renderTitle('搜索建议'),
+      options: suggestions.map((suggestion) => ({
+        value: suggestion,
+        label: suggestion,
+      })),
+    },
+  ] : [];
 
   return (
     <div className={styles.searchContainer}>
@@ -134,12 +144,18 @@ const SearchComponent: React.FC = () => {
           value={keyword}
           onChange={(value) => dispatch(setKeyword(value))}
           onSelect={handleSearch}
+          dropdownClassName={styles.searchDropdown}
         >
           <Input.Search
             size="large"
-            placeholder="搜索诗词、作者、朝代..."
+            placeholder="寻找诗词、名家、意境..."
             allowClear
-            enterButton="搜索"
+            enterButton={
+              <Space>
+                <SearchOutlined />
+                搜索
+              </Space>
+            }
             onSearch={handleSearch}
           />
         </AutoComplete>
@@ -156,6 +172,8 @@ const SearchComponent: React.FC = () => {
         placement="right"
         onClose={() => setShowAdvanced(false)}
         open={showAdvanced}
+        width={360}
+        className={styles.advancedDrawer}
         extra={
           <Button
             type="text"
@@ -219,12 +237,12 @@ const SearchComponent: React.FC = () => {
             </Select>
           </Form.Item>
 
+          <Divider style={{ margin: '8px 0 24px' }} />
+
           <Form.Item>
-            <Space style={{ width: '100%' }}>
-              <Button type="primary" htmlType="submit" block>
-                应用筛选
-              </Button>
-            </Space>
+            <Button type="primary" htmlType="submit" block>
+              应用筛选
+            </Button>
           </Form.Item>
         </Form>
       </Drawer>
