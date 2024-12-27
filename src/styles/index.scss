@@ -1,12 +1,7 @@
-<<<<<<< HEAD
-@import './reset.scss';
-@import './breakpoints.scss';
-@import './theme.scss';
-=======
-@forward './variables';
+@use './variables' as *;
+@use './mixins' as *;
 @forward './reset';
 @forward './theme';
->>>>>>> main
 
 // 全局响应式基础样式
 html {
@@ -64,20 +59,5 @@ h3 {
     @include respond-to('lg') {
       grid-template-columns: repeat(3, 1fr);
     }
-  }
-}
-
-// 响应式工具类
-.hide-on-mobile {
-  display: none;
-  @include respond-to('md') {
-    display: block;
-  }
-}
-
-.show-on-mobile {
-  display: block;
-  @include respond-to('md') {
-    display: none;
   }
 } 

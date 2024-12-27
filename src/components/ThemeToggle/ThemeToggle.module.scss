@@ -1,22 +1,15 @@
 .themeToggle {
-<<<<<<< HEAD
   width: 32px;
   height: 32px;
   padding: 0;
-=======
-  font-size: 20px;
-  width: 40px;
-  height: 40px;
->>>>>>> main
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-<<<<<<< HEAD
   background: transparent;
   border: none;
   color: var(--text-color);
-  transition: all var(--transition-duration) var(--transition-timing);
+  transition: all var(--theme-duration) var(--theme-easing);
   transform-origin: center;
   will-change: transform;
 
@@ -28,29 +21,16 @@
 
   :global(.anticon) {
     font-size: 20px;
-    transition: transform var(--transition-duration) var(--transition-timing);
-    transform-origin: center;
+    transition: transform var(--theme-duration) var(--theme-easing);
     will-change: transform;
     
     svg {
       width: 1em;
       height: 1em;
-      transition: none;
-      transform-origin: center;
     }
-=======
-  transition: all 0.3s ease;
-  
-  &:hover {
-    background-color: var(--card-background);
   }
-  
-  :global(.anticon) {
-    transition: transform 0.3s ease;
-  }
-  
+
   &:hover :global(.anticon) {
     transform: rotate(30deg);
->>>>>>> main
   }
 } 
