@@ -1,14 +1,22 @@
+@import '../../styles/breakpoints.scss';
+
 .card {
   height: 100%;
-  padding: var(--card-padding);
+  padding: map-get($spacers, 3);
   background: var(--card-background);
   border-radius: var(--card-radius);
   box-shadow: var(--card-shadow);
-  transition: all var(--transition-duration) var(--transition-timing);
+  transition: all var(--theme-duration) var(--theme-easing);
   cursor: pointer;
   position: relative;
   overflow: hidden;
   border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  
+  @include respond-to('md') {
+    padding: map-get($spacers, 4);
+  }
   
   &::before {
     content: '';
@@ -19,20 +27,22 @@
     height: 4px;
     background: linear-gradient(90deg, var(--primary-color), var(--primary-color-hover));
     opacity: 0;
-    transition: opacity var(--transition-duration) var(--transition-timing);
+    transition: opacity var(--theme-duration) var(--theme-easing);
   }
   
   &:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--card-hover-shadow);
-    border-color: transparent;
-    
-    &::before {
-      opacity: 1;
-    }
-    
-    .title {
-      color: var(--primary-color);
+    @include respond-to('md') {
+      transform: translateY(-4px);
+      box-shadow: var(--card-hover-shadow);
+      border-color: transparent;
+      
+      &::before {
+        opacity: 1;
+      }
+
+      .title {
+        color: var(--primary-color-hover);
+      }
     }
   }
 }
@@ -40,6 +50,7 @@
 .link {
   color: inherit;
   text-decoration: none;
+  display: block;
 
   &:hover {
     color: inherit;
@@ -47,68 +58,113 @@
 }
 
 .title {
-  margin-bottom: 16px !important;
-  font-size: 22px !important;
-  line-height: 1.4 !important;
-  color: var(--text-color);
-  transition: color var(--transition-duration) var(--transition-timing);
+  font-size: 1.25rem;
+  margin-bottom: map-get($spacers, 3);
+  transition: color var(--theme-duration) var(--theme-easing);
+  color: var(--poem-title-color) !important;
   font-weight: 600;
+  text-align: center;
   
-  &:hover {
-    color: var(--primary-color);
+  @include respond-to('md') {
+    font-size: 1.5rem;
+    margin-bottom: map-get($spacers, 4);
+  }
+
+  :global(.ant-typography) {
+    color: inherit !important;
+    display: block;
+    text-align: center;
   }
 }
 
-.author {
-  margin-bottom: 20px !important;
-  color: var(--text-secondary);
-  font-size: 15px;
-  display: flex;
-  align-items: center;
-  
-  &::before {
-    content: '';
-    display: inline-block;
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    background-color: var(--primary-color);
-    margin-right: 8px;
-    opacity: 0.6;
+// 暗色主题下的标题样式
+:global(body.dark-theme) {
+  .title {
+    color: var(--poem-title-color) !important;
+
+    &:hover {
+      color: var(--primary-color-hover) !important;
+    }
+
+    :global(.ant-typography) {
+      color: inherit !important;
+
+      &:hover {
+        color: inherit !important;
+      }
+    }
   }
 }
 
 .content {
-  margin-bottom: 24px;
-  padding: 20px;
-  background-color: rgba(37, 99, 235, 0.03);
-  border-radius: var(--border-radius-sm);
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: map-get($spacers, 3);
   
-  &::before {
-    content: '"';
-    position: absolute;
-    top: -10px;
-    left: 10px;
-    font-size: 48px;
-    color: var(--primary-color);
-    opacity: 0.1;
-    font-family: serif;
+  @include respond-to('md') {
+    margin-bottom: map-get($spacers, 4);
+  }
+}
+
+.footer {
+  margin-top: map-get($spacers, 3);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: map-get($spacers, 2);
+  
+  @include respond-to('md') {
+    margin-top: map-get($spacers, 4);
+    gap: map-get($spacers, 3);
+  }
+}
+
+.author {
+  margin: map-get($spacers, 2) 0;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  
+  @include respond-to('md') {
+    margin: map-get($spacers, 3) 0;
+    font-size: 1rem;
+  }
+  
+  &::before,
+  &::after {
+    content: '';
+    display: inline-block;
+    width: 2rem;
+    height: 1px;
+    background-color: var(--border-color);
+    margin: 0 map-get($spacers, 2);
+    opacity: 0.6;
+  }
+}
+
+.lineGroup {
+  display: flex;
+  justify-content: center;
+  gap: 1em;
+  margin-bottom: map-get($spacers, 2);
+
+  &:last-child {
+    margin-bottom: 0;
   }
 }
 
 .line {
-  margin-bottom: 10px !important;
   font-size: 16px;
   line-height: 1.8 !important;
   color: var(--text-color);
-  text-align: center;
   font-family: var(--font-family-poem);
   transition: color var(--transition-duration) var(--transition-timing);
-  
-  &:last-child {
-    margin-bottom: 0 !important;
-  }
   
   &:hover {
     color: var(--primary-color);
@@ -117,9 +173,14 @@
 
 .tags {
   margin-top: auto;
+  padding-top: map-get($spacers, 3);
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+  
+  @include respond-to('md') {
+    padding-top: map-get($spacers, 4);
+  }
   
   :global(.ant-tag) {
     margin: 0;

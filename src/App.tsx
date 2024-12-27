@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { ConfigProvider } from 'antd';
 import zhCN from 'antd/locale/zh_CN';
 import { store } from './store';
 import { Layout } from './components/Layout';
-import { Home } from './pages/Home';
-import { PoemDetail } from './pages/PoemDetail';
-import { Favorites } from './pages/Favorites';
+import { Loading } from './components/Loading';
+import { ErrorBoundary } from './components/ErrorBoundary';
+
+// Lazy load page components
+const Home = React.lazy(() => import('./pages/Home').then(module => ({ default: module.Home })));
+const PoemDetail = React.lazy(() => import('./pages/PoemDetail').then(module => ({ default: module.PoemDetail })));
+const Favorites = React.lazy(() => import('./pages/Favorites').then(module => ({ default: module.Favorites })));
 
 export const App: React.FC = () => {
   return (
@@ -21,15 +25,19 @@ export const App: React.FC = () => {
           },
         }}
       >
-        <Router>
-          <Layout>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/poems/:id" element={<PoemDetail />} />
-              <Route path="/favorites" element={<Favorites />} />
-            </Routes>
-          </Layout>
-        </Router>
+        <ErrorBoundary>
+          <Router>
+            <Layout>
+              <Suspense fallback={<Loading />}>
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/poems/:id" element={<PoemDetail />} />
+                  <Route path="/favorites" element={<Favorites />} />
+                </Routes>
+              </Suspense>
+            </Layout>
+          </Router>
+        </ErrorBoundary>
       </ConfigProvider>
     </Provider>
   );

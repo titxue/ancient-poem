@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Typography, Empty, Button, Spin, message } from 'antd';
+import { Typography, Empty, Button, Spin, message, Row, Col } from 'antd';
 import { Link } from 'react-router-dom';
 import { SyncOutlined } from '@ant-design/icons';
-import type { AppDispatch, RootState } from '../../store';
+import type { AppDispatch } from '../../store';
 import {
   selectFavorites,
   selectFavoritesLoading,
@@ -107,9 +107,13 @@ export const Favorites: React.FC = () => {
             <Spin size="large" />
           </div>
         )}
-        {favorites.map((poem) => (
-          <PoemCard key={poem.id} poem={poem} className={styles['base-card']} />
-        ))}
+        <Row gutter={[16, 16]}>
+          {favorites.map((poem) => (
+            <Col key={poem.id} xs={24} sm={12} md={8} lg={6}>
+              <PoemCard key={poem.id} poem={poem} className={styles['base-card']} />
+            </Col>
+          ))}
+        </Row>
       </div>
     </div>
   );

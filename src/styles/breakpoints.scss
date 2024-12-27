@@ -1,0 +1,68 @@
+// 断点变量
+$breakpoints: (
+  'xs': 320px,
+  'sm': 576px,
+  'md': 768px,
+  'lg': 992px,
+  'xl': 1200px,
+  'xxl': 1600px
+);
+
+// 响应式混入
+@mixin respond-to($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media screen and (min-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  } @else {
+    @warn "未定义的断点: #{$breakpoint}";
+  }
+}
+
+// 容器最大宽度
+$container-max-widths: (
+  'sm': 540px,
+  'md': 720px,
+  'lg': 960px,
+  'xl': 1140px,
+  'xxl': 1320px
+);
+
+// 响应式容器类
+.container {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 1rem;
+  padding-left: 1rem;
+
+  @each $breakpoint, $width in $container-max-widths {
+    @include respond-to($breakpoint) {
+      max-width: $width;
+    }
+  }
+}
+
+// 常用间距变量
+$spacer: 1rem;
+$spacers: (
+  0: 0,
+  1: $spacer * 0.25,  // 4px
+  2: $spacer * 0.5,   // 8px
+  3: $spacer,         // 16px
+  4: $spacer * 1.5,   // 24px
+  5: $spacer * 3      // 48px
+);
+
+// 响应式间距混入
+@mixin responsive-spacing($property, $size) {
+  #{$property}: map-get($spacers, $size);
+  
+  @include respond-to('md') {
+    #{$property}: map-get($spacers, $size) * 1.25;
+  }
+  
+  @include respond-to('lg') {
+    #{$property}: map-get($spacers, $size) * 1.5;
+  }
+} 

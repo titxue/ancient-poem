@@ -1,526 +1,83 @@
+<<<<<<< HEAD
+@import './reset.scss';
+@import './breakpoints.scss';
+@import './theme.scss';
+=======
 @forward './variables';
 @forward './reset';
 @forward './theme';
+>>>>>>> main
 
-/* Global styles */
-.container {
-  max-width: var(--container-xl);
-  margin: 0 auto;
-  padding: 0 var(--component-padding);
-}
-
-.text-center {
-  text-align: center;
-}
-
-.text-left {
-  text-align: left;
-}
-
-.text-right {
-  text-align: right;
-}
-
-.text-justify {
-  text-align: justify;
-}
-
-.text-primary {
-  color: var(--primary-color);
-}
-
-.text-success {
-  color: var(--success-color);
-}
-
-.text-warning {
-  color: var(--warning-color);
-}
-
-.text-error {
-  color: var(--error-color);
-}
-
-.text-disabled {
-  color: var(--text-disabled);
-}
-
-.bg-primary {
-  background-color: var(--primary-color);
-}
-
-.bg-success {
-  background-color: var(--success-color);
-}
-
-.bg-warning {
-  background-color: var(--warning-color);
-}
-
-.bg-error {
-  background-color: var(--error-color);
-}
-
-.flex {
-  display: flex;
-}
-
-.flex-column {
-  flex-direction: column;
-}
-
-.flex-wrap {
-  flex-wrap: wrap;
-}
-
-.items-center {
-  align-items: center;
-}
-
-.items-start {
-  align-items: flex-start;
-}
-
-.items-end {
-  align-items: flex-end;
-}
-
-.justify-center {
-  justify-content: center;
-}
-
-.justify-between {
-  justify-content: space-between;
-}
-
-.justify-around {
-  justify-content: space-around;
-}
-
-.gap-1 {
-  gap: 4px;
-}
-
-.gap-2 {
-  gap: 8px;
-}
-
-.gap-3 {
-  gap: 12px;
-}
-
-.gap-4 {
-  gap: 16px;
-}
-
-.gap-5 {
-  gap: 20px;
-}
-
-.gap-6 {
-  gap: 24px;
-}
-
-.m-0 {
-  margin: 0;
-}
-
-.mt-1 {
-  margin-top: 4px;
-}
-
-.mt-2 {
-  margin-top: 8px;
-}
-
-.mt-3 {
-  margin-top: 12px;
-}
-
-.mt-4 {
-  margin-top: 16px;
-}
-
-.mt-5 {
-  margin-top: 20px;
-}
-
-.mt-6 {
-  margin-top: 24px;
-}
-
-.mb-1 {
-  margin-bottom: 4px;
-}
-
-.mb-2 {
-  margin-bottom: 8px;
-}
-
-.mb-3 {
-  margin-bottom: 12px;
-}
-
-.mb-4 {
-  margin-bottom: 16px;
-}
-
-.mb-5 {
-  margin-bottom: 20px;
-}
-
-.mb-6 {
-  margin-bottom: 24px;
-}
-
-.ml-1 {
-  margin-left: 4px;
-}
-
-.ml-2 {
-  margin-left: 8px;
-}
-
-.ml-3 {
-  margin-left: 12px;
-}
-
-.ml-4 {
-  margin-left: 16px;
-}
-
-.ml-5 {
-  margin-left: 20px;
-}
-
-.ml-6 {
-  margin-left: 24px;
-}
-
-.mr-1 {
-  margin-right: 4px;
-}
-
-.mr-2 {
-  margin-right: 8px;
-}
-
-.mr-3 {
-  margin-right: 12px;
-}
-
-.mr-4 {
-  margin-right: 16px;
-}
-
-.mr-5 {
-  margin-right: 20px;
-}
-
-.mr-6 {
-  margin-right: 24px;
-}
-
-.p-0 {
-  padding: 0;
-}
-
-.pt-1 {
-  padding-top: 4px;
-}
-
-.pt-2 {
-  padding-top: 8px;
-}
-
-.pt-3 {
-  padding-top: 12px;
-}
-
-.pt-4 {
-  padding-top: 16px;
-}
-
-.pt-5 {
-  padding-top: 20px;
-}
-
-.pt-6 {
-  padding-top: 24px;
-}
-
-.pb-1 {
-  padding-bottom: 4px;
-}
-
-.pb-2 {
-  padding-bottom: 8px;
-}
-
-.pb-3 {
-  padding-bottom: 12px;
-}
-
-.pb-4 {
-  padding-bottom: 16px;
-}
-
-.pb-5 {
-  padding-bottom: 20px;
-}
-
-.pb-6 {
-  padding-bottom: 24px;
-}
-
-.pl-1 {
-  padding-left: 4px;
-}
-
-.pl-2 {
-  padding-left: 8px;
-}
-
-.pl-3 {
-  padding-left: 12px;
-}
-
-.pl-4 {
-  padding-left: 16px;
-}
-
-.pl-5 {
-  padding-left: 20px;
-}
-
-.pl-6 {
-  padding-left: 24px;
-}
-
-.pr-1 {
-  padding-right: 4px;
-}
-
-.pr-2 {
-  padding-right: 8px;
-}
-
-.pr-3 {
-  padding-right: 12px;
-}
-
-.pr-4 {
-  padding-right: 16px;
-}
-
-.pr-5 {
-  padding-right: 20px;
-}
-
-.pr-6 {
-  padding-right: 24px;
-}
-
-.rounded {
-  border-radius: var(--border-radius);
-}
-
-.rounded-sm {
-  border-radius: 4px;
-}
-
-.rounded-lg {
-  border-radius: 12px;
-}
-
-.rounded-full {
-  border-radius: 9999px;
-}
-
-.shadow {
-  box-shadow: var(--box-shadow);
-}
-
-.shadow-sm {
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-}
-
-.shadow-lg {
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-}
-
-.cursor-pointer {
-  cursor: pointer;
-}
-
-.cursor-not-allowed {
-  cursor: not-allowed;
-}
-
-.select-none {
-  user-select: none;
-}
-
-.truncate {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.break-all {
-  word-break: break-all;
-}
-
-.capitalize {
-  text-transform: capitalize;
-}
-
-.uppercase {
-  text-transform: uppercase;
-}
-
-.lowercase {
-  text-transform: lowercase;
-}
-
-.font-normal {
-  font-weight: 400;
-}
-
-.font-medium {
-  font-weight: 500;
-}
-
-.font-semibold {
-  font-weight: 600;
-}
-
-.font-bold {
-  font-weight: 700;
-}
-
-.text-xs {
-  font-size: 12px;
-}
-
-.text-sm {
-  font-size: 14px;
-}
-
-.text-base {
+// 全局响应式基础样式
+html {
   font-size: 16px;
+  
+  @include respond-to('md') {
+    font-size: 15px;
+  }
+  
+  @include respond-to('lg') {
+    font-size: 16px;
+  }
 }
 
-.text-lg {
-  font-size: 18px;
-}
-
-.text-xl {
-  font-size: 20px;
-}
-
-.text-2xl {
-  font-size: 24px;
-}
-
-.leading-none {
-  line-height: 1;
-}
-
-.leading-tight {
-  line-height: 1.25;
-}
-
-.leading-snug {
-  line-height: 1.375;
-}
-
-.leading-normal {
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   line-height: 1.5;
+  color: var(--text-color);
+  background-color: var(--background-color);
 }
 
-.leading-relaxed {
-  line-height: 1.625;
+// 响应式排版
+h1 {
+  font-size: 2rem;
+  @include respond-to('md') { font-size: 2.5rem; }
 }
 
-.leading-loose {
-  line-height: 2;
+h2 {
+  font-size: 1.75rem;
+  @include respond-to('md') { font-size: 2rem; }
 }
 
-.opacity-0 {
-  opacity: 0;
+h3 {
+  font-size: 1.5rem;
+  @include respond-to('md') { font-size: 1.75rem; }
 }
 
-.opacity-25 {
-  opacity: 0.25;
-}
-
-.opacity-50 {
-  opacity: 0.5;
-}
-
-.opacity-75 {
-  opacity: 0.75;
-}
-
-.opacity-100 {
-  opacity: 1;
-}
-
-.transition {
-  transition: all var(--transition-duration);
-}
-
-.transition-transform {
-  transition: transform var(--transition-duration);
-}
-
-.transition-opacity {
-  transition: opacity var(--transition-duration);
-}
-
-.hover\:opacity-75:hover {
-  opacity: 0.75;
-}
-
-.hover\:opacity-100:hover {
-  opacity: 1;
-}
-
-.hover\:shadow:hover {
-  box-shadow: var(--box-shadow);
-}
-
-.hover\:shadow-lg:hover {
-  box-shadow: var(--box-shadow-hover);
-}
-
-@media (max-width: var(--screen-sm)) {
-  .container {
-    max-width: 100%;
+// 响应式网格系统
+.grid {
+  display: grid;
+  gap: map-get($spacers, 3);
+  
+  &--2-cols {
+    grid-template-columns: 1fr;
+    @include respond-to('md') {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  &--3-cols {
+    grid-template-columns: 1fr;
+    @include respond-to('md') {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @include respond-to('lg') {
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
 }
 
-@media (min-width: var(--screen-sm)) {
-  .container {
-    max-width: var(--container-sm);
+// 响应式工具类
+.hide-on-mobile {
+  display: none;
+  @include respond-to('md') {
+    display: block;
   }
 }
 
-@media (min-width: var(--screen-md)) {
-  .container {
-    max-width: var(--container-md);
-  }
-}
-
-@media (min-width: var(--screen-lg)) {
-  .container {
-    max-width: var(--container-lg);
-  }
-}
-
-@media (min-width: var(--screen-xl)) {
-  .container {
-    max-width: var(--container-xl);
+.show-on-mobile {
+  display: block;
+  @include respond-to('md') {
+    display: none;
   }
 } 

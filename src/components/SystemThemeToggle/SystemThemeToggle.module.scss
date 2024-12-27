@@ -1,18 +1,11 @@
-.themeToggle {
-<<<<<<< HEAD
+.systemThemeToggle {
   width: 32px;
   height: 32px;
   padding: 0;
-=======
-  font-size: 20px;
-  width: 40px;
-  height: 40px;
->>>>>>> main
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-<<<<<<< HEAD
   background: transparent;
   border: none;
   color: var(--text-color);
@@ -24,6 +17,11 @@
     color: var(--primary-color);
     background: rgba(24, 144, 255, 0.1);
     transform: scale(1.1);
+  }
+
+  &.active {
+    color: var(--primary-color);
+    background: rgba(24, 144, 255, 0.15);
   }
 
   :global(.anticon) {
@@ -38,19 +36,5 @@
       transition: none;
       transform-origin: center;
     }
-=======
-  transition: all 0.3s ease;
-  
-  &:hover {
-    background-color: var(--card-background);
-  }
-  
-  :global(.anticon) {
-    transition: transform 0.3s ease;
-  }
-  
-  &:hover :global(.anticon) {
-    transform: rotate(30deg);
->>>>>>> main
   }
 } 

@@ -1,32 +1,47 @@
 import React, { useEffect, useState } from 'react';
-import { Typography, Input, Menu, Row, Col } from 'antd';
+import { Typography, Menu, Row, Col } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { HomeOutlined, BookOutlined, UserOutlined } from '@ant-design/icons';
 import type { AppDispatch, RootState } from '../../store';
 import { fetchPoems, searchPoems } from '../../store/slices/poemSlice';
 import type { PoemState } from '../../store/slices/poemSlice';
 import { PoemList } from '../../components/Poem/PoemList';
+import Search from '../../components/Search';
 import styles from './Home.module.scss';
 
 const { Title } = Typography;
-const { Search } = Input;
 
 export const Home: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [currentCategory, setCurrentCategory] = useState('all');
   const { error } = useSelector((state: RootState) => state.poems as PoemState);
+  const { keyword, advancedSearch } = useSelector((state: RootState) => state.search);
 
   useEffect(() => {
     dispatch(fetchPoems({ page: 1, pageSize: 12 }));
   }, [dispatch]);
 
-  const handleSearch = (value: string) => {
-    if (value) {
-      dispatch(searchPoems({ page: 1, pageSize: 12, keyword: value }));
+  useEffect(() => {
+    // 监听搜索条件变化
+    const hasAdvancedSearch = advancedSearch && (
+      advancedSearch.dynasty ||
+      advancedSearch.category ||
+      (advancedSearch.tag && advancedSearch.tag.length > 0)
+    );
+
+    if (keyword || hasAdvancedSearch) {
+      dispatch(searchPoems({
+        page: 1,
+        pageSize: 12,
+        keyword,
+        dynasty: advancedSearch?.dynasty,
+        category: advancedSearch?.category,
+        tag: advancedSearch?.tag,
+      }));
     } else {
       dispatch(fetchPoems({ page: 1, pageSize: 12 }));
     }
-  };
+  }, [keyword, advancedSearch, dispatch]);
 
   const handleMenuClick = ({ key }: { key: string }) => {
     setCurrentCategory(key);
@@ -95,14 +110,7 @@ export const Home: React.FC = () => {
         <p className={styles['page-subtitle']}>
           品味传统文化之美，感受诗词之韵
         </p>
-        <Search
-          placeholder="搜索诗词、作者、朝代..."
-          allowClear
-          enterButton="搜索"
-          size="large"
-          className={styles.search}
-          onSearch={handleSearch}
-        />
+        <Search />
       </div>
       <Menu
         mode="horizontal"

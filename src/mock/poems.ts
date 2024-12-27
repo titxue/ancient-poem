@@ -136,7 +136,9 @@ export const searchPoems = (params: PoemQueryParams): PoemListResponse => {
     filtered = filtered.filter(poem => 
       poem.title.toLowerCase().includes(keyword) ||
       poem.author.toLowerCase().includes(keyword) ||
-      poem.content.some(line => line.toLowerCase().includes(keyword))
+      poem.dynasty.toLowerCase().includes(keyword) ||
+      poem.content.some(line => line.toLowerCase().includes(keyword)) ||
+      poem.tags.some(tag => tag.toLowerCase().includes(keyword))
     );
   }
   
@@ -148,8 +150,27 @@ export const searchPoems = (params: PoemQueryParams): PoemListResponse => {
     filtered = filtered.filter(poem => poem.author === params.author);
   }
   
-  if (params.tag) {
-    filtered = filtered.filter(poem => poem.tags.includes(params.tag as string));
+  if (params.tag && Array.isArray(params.tag)) {
+    filtered = filtered.filter(poem => 
+      params.tag!.every(tag => poem.tags.includes(tag))
+    );
+  }
+
+  if (params.category) {
+    // 根据分类筛选，这里可以根据实际需求调整筛选逻辑
+    filtered = filtered.filter(poem => {
+      if (params.category === '诗经') {
+        return poem.title.includes('诗经');
+      }
+      if (params.category === '楚辞') {
+        return poem.title.includes('楚辞');
+      }
+      if (params.category === '乐府') {
+        return poem.title.includes('乐府');
+      }
+      // 其他分类的处理...
+      return true;
+    });
   }
   
   const start = (params.page - 1) * params.pageSize;
@@ -162,4 +183,48 @@ export const searchPoems = (params: PoemQueryParams): PoemListResponse => {
     page: params.page,
     pageSize: params.pageSize
   };
+};
+
+// 添加搜索建议功能
+export const getSuggestions = (keyword: string): string[] => {
+  const suggestions: Set<string> = new Set();
+  
+  if (!keyword) return [];
+  
+  const lowerKeyword = keyword.toLowerCase();
+  
+  // 从诗词数据中收集建议
+  poems.forEach(poem => {
+    // 标题建议
+    if (poem.title.toLowerCase().includes(lowerKeyword)) {
+      suggestions.add(`《${poem.title}》`);
+    }
+    
+    // 作者建议
+    if (poem.author.toLowerCase().includes(lowerKeyword)) {
+      suggestions.add(poem.author);
+    }
+    
+    // 朝代建议
+    if (poem.dynasty.toLowerCase().includes(lowerKeyword)) {
+      suggestions.add(`${poem.dynasty}代`);
+    }
+    
+    // 标签建议
+    poem.tags.forEach(tag => {
+      if (tag.toLowerCase().includes(lowerKeyword)) {
+        suggestions.add(tag);
+      }
+    });
+    
+    // 内容建议（去除标点符号）
+    poem.content.forEach(line => {
+      const cleanLine = line.replace(/[，。！？、；：]/g, '');
+      if (cleanLine.toLowerCase().includes(lowerKeyword)) {
+        suggestions.add(cleanLine);
+      }
+    });
+  });
+  
+  return Array.from(suggestions).slice(0, 10); // 限制返回10个建议
 }; 

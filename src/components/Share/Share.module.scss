@@ -1,0 +1,17 @@
+.shareButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  transition: all 0.3s;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.06);
+  }
+
+  :global(.ant-dropdown-open) & {
+    background-color: rgba(0, 0, 0, 0.06);
+  }
+} 
