@@ -1,137 +1,111 @@
 :root {
-  // Light theme variables
-  --background-color: #ffffff;
-  --text-color: #333333;
-  --text-secondary: #666666;
-  --card-background: #f5f5f5;
-  --border-color: #e0e0e0;
+  // 基础颜色
   --primary-color: #1890ff;
-  --menu-background: #ffffff;
-  --menu-text-color: #333333;
-  --menu-hover-color: #1890ff;
-  --submenu-background: #ffffff;
-  --poem-title-color: #262626;
-  --poem-author-color: #595959;
-  --transition-duration: 0.6s;
-  --transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
+  --primary-color-hover: #40a9ff;
+  --primary-color-active: #096dd9;
+  --primary-color-outline: rgba(24, 144, 255, 0.2);
+
+  // 语义颜色
+  --success-color: #52c41a;
+  --warning-color: #faad14;
+  --error-color: #f5222d;
+  --info-color: #1890ff;
+
+  // 中性色板 - 浅色主题
+  --gray-1: #ffffff;
+  --gray-2: #fafafa;
+  --gray-3: #f5f5f5;
+  --gray-4: #f0f0f0;
+  --gray-5: #d9d9d9;
+  --gray-6: #bfbfbf;
+  --gray-7: #8c8c8c;
+  --gray-8: #595959;
+  --gray-9: #434343;
+  --gray-10: #262626;
+  --gray-11: #1f1f1f;
+  --gray-12: #141414;
+  --gray-13: #000000;
+
+  // 功能色变量 - 浅色主题
+  --background-color: var(--gray-1);
+  --component-background: var(--gray-2);
+  --border-color: var(--gray-4);
+  --text-color: var(--gray-10);
+  --text-color-secondary: var(--gray-8);
+  --text-color-tertiary: var(--gray-7);
+  --heading-color: var(--gray-10);
+  --disabled-color: var(--gray-6);
+  --disabled-bg: var(--gray-3);
+  --icon-color: var(--gray-7);
+  --link-color: var(--primary-color);
+  --link-hover-color: var(--primary-color-hover);
+  --link-active-color: var(--primary-color-active);
+
+  // 组件变量
+  --card-background: var(--gray-2);
+  --card-hover-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --card-radius: 8px;
+  --card-padding: 24px;
+  --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+  // 导航菜单变量
+  --menu-background: var(--gray-1);
+  --menu-text-color: var(--text-color);
+  --menu-hover-color: var(--primary-color);
+  --submenu-background: var(--gray-1);
+  --menu-item-active-bg: var(--primary-color-outline);
+
+  // 诗词相关变量
+  --poem-title-color: var(--gray-10);
+  --poem-author-color: var(--gray-8);
+  --poem-content-bg: rgba(24, 144, 255, 0.04);
+
+  // 主题过渡配置
+  --theme-duration: 200ms;  // 缩短过渡时间，提高响应速度
+  --theme-easing: cubic-bezier(0.4, 0, 0.2, 1);
+
+  // Component Tokens - 组件令牌
+  --ancient-dropdown-bg: var(--gray-1);
+  --ancient-dropdown-bg-dark: var(--gray-11);
+  --ancient-dropdown-border: var(--gray-4);
+  --ancient-dropdown-border-dark: var(--gray-9);
+  --ancient-dropdown-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --ancient-dropdown-shadow-dark: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --ancient-dropdown-text: var(--gray-10);
+  --ancient-dropdown-text-dark: rgba(255, 255, 255, 0.85);
+  --ancient-dropdown-hover-bg: var(--primary-color-outline);
+  --ancient-dropdown-hover-bg-dark: var(--gray-10);
 }
 
-// 应用全局主题过渡
-body {
-  background-color: var(--background-color);
-  color: var(--text-color);
-  min-height: 100vh;
-  margin: 0;
-  position: relative;
-  transition: background-color var(--transition-duration) var(--transition-timing),
-              color var(--transition-duration) var(--transition-timing);
-}
-
-// 导航菜单基础样式
-.ant-menu {
-  background: var(--menu-background);
-  color: var(--menu-text-color);
-  border: none;
-
-  &-item {
-    color: var(--menu-text-color) !important;
-    background: none !important;
-
-    &:hover {
-      color: var(--menu-hover-color) !important;
-    }
-
-    &-selected {
-      color: var(--primary-color) !important;
-    }
-  }
-
-  &-horizontal {
-    border-bottom: 1px solid var(--border-color);
-    line-height: 46px;
-    
-    & > .ant-menu-item::after,
-    & > .ant-menu-submenu::after {
-      border-bottom: 2px solid var(--primary-color);
-    }
-  }
-
-  &-submenu {
-    &-popup {
-      .ant-menu {
-        background-color: var(--submenu-background);
-      }
-    }
-
-    &-title {
-      color: var(--menu-text-color) !important;
-
-      &:hover {
-        color: var(--menu-hover-color) !important;
-      }
-    }
-  }
-}
-
-// 下拉菜单样式
-.ant-dropdown {
-  &-menu {
-    background-color: var(--submenu-background) !important;
-    border: 1px solid var(--border-color);
-
-    &-item {
-      color: var(--menu-text-color) !important;
-      background: none !important;
-
-      &:hover {
-        background-color: var(--card-background) !important;
-        color: var(--menu-hover-color) !important;
-      }
-
-      &-selected {
-        color: var(--primary-color) !important;
-        background-color: var(--card-background) !important;
-      }
-    }
-
-    &-submenu {
-      > .ant-dropdown-menu-item {
-        background-color: var(--submenu-background) !important;
-      }
-    }
-  }
-}
-
-// 子菜单样式
-.ant-menu-submenu-popup {
-  .ant-menu {
-    background-color: var(--submenu-background) !important;
-
-    .ant-menu-item {
-      background-color: var(--submenu-background) !important;
-      color: var(--menu-text-color) !important;
-
-      &:hover {
-        background-color: var(--card-background) !important;
-        color: var(--menu-hover-color) !important;
-      }
-    }
-  }
-}
-
-// Dark theme class
+// 暗色主题变量覆盖
 body.dark-theme {
-  --background-color: #1a1a1a;
-  --text-color: #ffffff;
-  --text-secondary: #b3b3b3;
-  --card-background: #2d2d2d;
-  --border-color: #404040;
-  --menu-background: #1a1a1a;
-  --menu-text-color: #ffffff;
-  --menu-hover-color: #1890ff;
-  --submenu-background: #2d2d2d;
-  --poem-title-color: #e6e6e6;
-  --poem-author-color: #cccccc;
+  // 功能色变量 - 暗色主题
+  --background-color: var(--gray-12);
+  --component-background: var(--gray-11);
+  --border-color: var(--gray-9);
+  --text-color: rgba(255, 255, 255, 0.85);
+  --text-color-secondary: rgba(255, 255, 255, 0.65);
+  --text-color-tertiary: rgba(255, 255, 255, 0.45);
+  --heading-color: rgba(255, 255, 255, 0.85);
+  --disabled-color: rgba(255, 255, 255, 0.35);
+  --disabled-bg: var(--gray-10);
+  --icon-color: rgba(255, 255, 255, 0.65);
+
+  // 组件变量覆盖
+  --card-background: var(--gray-11);
+  --card-hover-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+
+  // 导航菜单变量覆盖
+  --menu-background: var(--gray-12);
+  --menu-text-color: var(--text-color);
+  --submenu-background: var(--gray-11);
+  --menu-item-active-bg: rgba(24, 144, 255, 0.15);
+
+  // 诗词相关变量覆盖
+  --poem-title-color: rgba(255, 255, 255, 0.95);
+  --poem-author-color: rgba(255, 255, 255, 0.75);
+  --poem-content-bg: rgba(24, 144, 255, 0.08);
 
   &::before {
     content: '';
@@ -144,84 +118,149 @@ body.dark-theme {
     pointer-events: none;
     z-index: 1;
     opacity: 0;
-    transition: opacity var(--transition-duration) var(--transition-timing);
+    transition: opacity var(--transition-duration-slow) var(--transition-timing-enter);
     will-change: opacity;
   }
 
   &.theme-transition-active::before {
     opacity: 1;
   }
+}
 
-  // 布局组件样式
-  .ant-layout {
-    &-header {
-      background: var(--menu-background);
-      border-bottom: 1px solid var(--border-color);
-    }
-
-    &-content {
-      background: var(--background-color);
-    }
-  }
-
-  // 卡片样式
-  .ant-card {
-    background: var(--card-background);
-    border-color: var(--border-color);
-  }
-
-  // 按钮样式
-  .ant-btn {
-    color: var(--text-color);
-    border-color: var(--border-color);
-
-    &:hover {
-      color: var(--primary-color);
-      border-color: var(--primary-color);
-    }
-  }
-
-  // 下拉菜单暗色样式覆盖
-  .ant-dropdown-menu {
-    box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.48);
+// 全局过渡控制
+html {
+  &.theme-transitioning * {
+    transition: 
+      color var(--theme-duration) var(--theme-easing),
+      background-color var(--theme-duration) var(--theme-easing),
+      border-color var(--theme-duration) var(--theme-easing),
+      box-shadow var(--theme-duration) var(--theme-easing) !important;
   }
 }
 
-// 使用 CSS 变量控制所有需要过渡的属性
-.ant-layout,
-.ant-layout-header,
-.ant-layout-content,
-.ant-menu,
-.ant-menu-item,
-.ant-card,
-.ant-btn,
-.ant-dropdown-menu,
-.ant-dropdown-menu-item {
+// 应用全局主题过渡
+body {
   background-color: var(--background-color);
   color: var(--text-color);
-  border-color: var(--border-color);
-  transition: inherit;
-}
+  min-height: 100vh;
+  margin: 0;
+  position: relative;
 
-// 搜索框样式
-.ant-input-search {
-  .ant-input {
-    background-color: var(--card-background);
-    color: var(--text-color);
-    border-color: var(--border-color);
+  // 主题切换遮罩
+  &.theme-transition-active::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0;
+    transition: opacity var(--theme-duration) var(--theme-easing);
   }
 
-  .ant-input-group-addon {
-    background-color: var(--card-background);
-    border-color: var(--border-color);
+  &.theme-transition-active.dark-theme::before {
+    opacity: 1;
+  }
+}
 
-    .ant-btn {
-      background-color: var(--primary-color);
-      border-color: var(--primary-color);
-      color: #fff;
+// 导航菜单样式
+.ant-menu {
+  background: var(--menu-background);
+  color: var(--menu-text-color);
+  border: none;
+
+  &-item,
+  &-submenu-title {
+    color: var(--menu-text-color) !important;
+    background: none !important;
+
+    &:hover {
+      color: var(--menu-hover-color) !important;
+      background-color: var(--menu-item-active-bg) !important;
+    }
+  }
+
+  &-item-selected {
+    color: var(--primary-color) !important;
+    background-color: var(--menu-item-active-bg) !important;
+  }
+
+  &-horizontal {
+    border-bottom: 1px solid var(--border-color);
+
+    .ant-menu-item::after,
+    .ant-menu-submenu::after {
+      border-bottom: 2px solid var(--primary-color);
+    }
+  }
+}
+
+// 下拉菜单样式
+.ant-dropdown {
+  // 确保下拉菜单的样式不受全局主题过渡的影响
+  &-menu {
+    background-color: var(--submenu-background) !important;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--card-shadow);
+
+    &-item {
+      color: var(--menu-text-color) !important;
+      background: none !important;
 
       &:hover {
-        opacity: 0.85;
+        color: var(--menu-hover-color) !important;
+        background-color: var(--menu-item-active-bg) !important;
+      }
+
+      &-selected {
+        color: var(--primary-color) !important;
+        background-color: var(--menu-item-active-bg) !important;
+      }
+    }
+
+    // 子菜单样式
+    &-submenu {
+      > .ant-dropdown-menu {
+        background-color: var(--submenu-background) !important;
+        border: 1px solid var(--border-color);
+        box-shadow: var(--card-shadow);
+      }
+    }
+  }
+}
+
+// 暗色主题下的下拉菜单样式覆盖
+body.dark-theme {
+  .ant-dropdown {
+    &-menu {
+      background-color: var(--gray-11) !important;
+      border-color: var(--gray-9);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+
+      &-item {
+        color: rgba(255, 255, 255, 0.85) !important;
+
+        &:hover {
+          background-color: var(--gray-10) !important;
+          color: var(--primary-color) !important;
+        }
+
+        &-selected {
+          background-color: var(--gray-10) !important;
+          color: var(--primary-color) !important;
+        }
+      }
+
+      // 子菜单暗色样式
+      &-submenu {
+        > .ant-dropdown-menu {
+          background-color: var(--gray-11) !important;
+          border-color: var(--gray-9);
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
       }
     }
   }
@@ -229,12 +268,197 @@ body.dark-theme {
 
 // 诗词卡片样式
 .poem-card {
+  background: var(--card-background);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--card-shadow);
+
   .poem-title {
     color: var(--poem-title-color);
-    font-weight: 500;
   }
 
   .poem-author {
     color: var(--poem-author-color);
+  }
+
+  .poem-content {
+    background-color: var(--poem-content-bg);
+  }
+}
+
+// 主题切换按钮样式
+.theme-toggle,
+.system-theme-toggle {
+  color: var(--text-color);
+  background: transparent;
+}
+
+// 2. Component Base - 组件基础层
+// 使用命名空间隔离组件样式
+.ancient-dropdown {
+  // 重置默认样式
+  .ant-dropdown-menu {
+    margin: 0;
+    padding: 4px 0;
+    list-style-type: none;
+    outline: none;
+  }
+}
+
+// 3. Theme Variants - 主题变体层
+.ancient-dropdown {
+  // Light Theme - 亮色主题
+  .ant-dropdown-menu {
+    background-color: var(--ancient-dropdown-bg);
+    border: 1px solid var(--ancient-dropdown-border);
+    box-shadow: var(--ancient-dropdown-shadow);
+    
+    &-item {
+      color: var(--ancient-dropdown-text);
+      transition: all var(--theme-duration) var(--theme-easing);
+      
+      &:hover {
+        color: var(--primary-color);
+        background-color: var(--ancient-dropdown-hover-bg);
+      }
+    }
+  }
+}
+
+// Dark Theme - 暗色主题
+body.dark-theme {
+  .ancient-dropdown {
+    .ant-dropdown-menu {
+      background-color: var(--ancient-dropdown-bg-dark);
+      border-color: var(--ancient-dropdown-border-dark);
+      box-shadow: var(--ancient-dropdown-shadow-dark);
+      
+      &-item {
+        color: var(--ancient-dropdown-text-dark);
+        
+        &:hover {
+          color: var(--primary-color);
+          background-color: var(--ancient-dropdown-hover-bg-dark);
+        }
+      }
+    }
+  }
+}
+
+// 4. Layout & Structure - 布局结构层
+.ancient-dropdown {
+  .ant-dropdown-menu {
+    position: relative;
+    border-radius: 2px;
+    
+    &-item {
+      padding: 5px 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+    }
+  }
+}
+
+// 重构下拉菜单样式
+.ancient-dropdown {
+  // 覆盖 Ant Design 的下拉菜单样式
+  .ant-menu-submenu-popup > .ant-menu,
+  .ant-dropdown-menu {
+    background-color: var(--ancient-dropdown-bg) !important;
+    border: 1px solid var(--ancient-dropdown-border) !important;
+    box-shadow: var(--ancient-dropdown-shadow) !important;
+    
+    .ant-menu-item,
+    .ant-dropdown-menu-item {
+      color: var(--ancient-dropdown-text) !important;
+      transition: all var(--theme-duration) var(--theme-easing) !important;
+      
+      &:hover {
+        color: var(--primary-color) !important;
+        background-color: var(--ancient-dropdown-hover-bg) !important;
+      }
+      
+      &-selected {
+        color: var(--primary-color) !important;
+        background-color: var(--ancient-dropdown-hover-bg) !important;
+      }
+    }
+  }
+}
+
+// 暗色主题下拉菜单样式
+body.dark-theme {
+  .ancient-dropdown {
+    .ant-menu-submenu-popup > .ant-menu,
+    .ant-dropdown-menu {
+      background-color: var(--ancient-dropdown-bg-dark) !important;
+      border-color: var(--ancient-dropdown-border-dark) !important;
+      box-shadow: var(--ancient-dropdown-shadow-dark) !important;
+      
+      .ant-menu-item,
+      .ant-dropdown-menu-item {
+        color: var(--ancient-dropdown-text-dark) !important;
+        
+        &:hover {
+          color: var(--primary-color) !important;
+          background-color: var(--ancient-dropdown-hover-bg-dark) !important;
+        }
+        
+        &-selected {
+          color: var(--primary-color) !important;
+          background-color: var(--ancient-dropdown-hover-bg-dark) !important;
+        }
+      }
+    }
+  }
+}
+
+// 专门处理子菜单弹出层样式
+.ant-menu-submenu-popup {
+  // 确保弹出层的样式不受全局样式影响
+  .ant-menu {
+    background-color: var(--submenu-background) !important;
+    border: 1px solid var(--border-color) !important;
+    box-shadow: var(--card-shadow) !important;
+
+    .ant-menu-item {
+      color: var(--menu-text-color) !important;
+      background: none !important;
+
+      &:hover {
+        color: var(--menu-hover-color) !important;
+        background-color: var(--menu-item-active-bg) !important;
+      }
+
+      &-selected {
+        color: var(--primary-color) !important;
+        background-color: var(--menu-item-active-bg) !important;
+      }
+    }
+  }
+}
+
+// 暗色主题下的子菜单弹出层样式
+body.dark-theme {
+  .ant-menu-submenu-popup {
+    .ant-menu {
+      background-color: var(--gray-11) !important;
+      border-color: var(--gray-9) !important;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+
+      .ant-menu-item {
+        color: rgba(255, 255, 255, 0.85) !important;
+
+        &:hover {
+          color: var(--primary-color) !important;
+          background-color: var(--gray-10) !important;
+        }
+
+        &-selected {
+          color: var(--primary-color) !important;
+          background-color: var(--gray-10) !important;
+        }
+      }
+    }
   }
 } 

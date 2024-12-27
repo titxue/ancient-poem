@@ -34,24 +34,27 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
   };
 
   return (
-    <AntLayout className={styles.layout}>
+    <div className={styles.layout}>
       <Header className={styles.header}>
         <div className={styles.logo}>
           <Link to="/">{import.meta.env.VITE_APP_TITLE || '古诗词网'}</Link>
         </div>
-        <Menu
-          mode="horizontal"
-          selectedKeys={[location.pathname]}
-          items={menuItems}
-          className={styles.menu}
-          onClick={handleMenuClick}
-        />
+        <div className={styles.menu}>
+          <Menu
+            mode="horizontal"
+            selectedKeys={[location.pathname]}
+            items={menuItems}
+            onClick={handleMenuClick}
+          />
+        </div>
         <div className={styles.actions}>
-          <ThemeToggle />
           <SystemThemeToggle />
+          <ThemeToggle />
         </div>
       </Header>
       <Content className={styles.content}>{children}</Content>
-    </AntLayout>
+    </div>
   );
-}; 
+};
+
+export default Layout; 

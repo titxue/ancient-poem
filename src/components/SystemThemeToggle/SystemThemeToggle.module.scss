@@ -1,41 +1,40 @@
 .systemThemeToggle {
-  font-size: 20px;
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
+  padding: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  transition: all 0.3s ease;
-  margin-left: 8px;
-  
+  background: transparent;
+  border: none;
+  color: var(--text-color);
+  transition: all var(--transition-duration) var(--transition-timing);
+  transform-origin: center;
+  will-change: transform;
+
   &:hover {
-    background-color: var(--card-background);
-  }
-  
-  :global(.anticon) {
-    transition: transform 0.3s ease;
-  }
-  
-  &:hover :global(.anticon) {
+    color: var(--primary-color);
+    background: rgba(24, 144, 255, 0.1);
     transform: scale(1.1);
-  }
-  
-  &.dark {
-    color: var(--text-color);
   }
 
   &.active {
-    background-color: var(--primary-color);
-    color: #fff;
+    color: var(--primary-color);
+    background: rgba(24, 144, 255, 0.15);
+  }
 
-    &:hover {
-      background-color: var(--primary-color);
-      opacity: 0.85;
-    }
-
-    &.dark {
-      color: #fff;
+  :global(.anticon) {
+    font-size: 20px;
+    transition: transform var(--transition-duration) var(--transition-timing);
+    transform-origin: center;
+    will-change: transform;
+    
+    svg {
+      width: 1em;
+      height: 1em;
+      transition: none;
+      transform-origin: center;
     }
   }
 } 

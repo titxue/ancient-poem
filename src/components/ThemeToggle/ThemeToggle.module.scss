@@ -1,22 +1,35 @@
 .themeToggle {
-  font-size: 20px;
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
+  padding: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  transition: all 0.3s ease;
-  
+  background: transparent;
+  border: none;
+  color: var(--text-color);
+  transition: all var(--transition-duration) var(--transition-timing);
+  transform-origin: center;
+  will-change: transform;
+
   &:hover {
-    background-color: var(--card-background);
+    color: var(--primary-color);
+    background: rgba(24, 144, 255, 0.1);
+    transform: scale(1.1);
   }
-  
+
   :global(.anticon) {
-    transition: transform 0.3s ease;
-  }
-  
-  &:hover :global(.anticon) {
-    transform: rotate(30deg);
+    font-size: 20px;
+    transition: transform var(--transition-duration) var(--transition-timing);
+    transform-origin: center;
+    will-change: transform;
+    
+    svg {
+      width: 1em;
+      height: 1em;
+      transition: none;
+      transform-origin: center;
+    }
   }
 } 

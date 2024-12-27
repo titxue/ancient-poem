@@ -17,11 +17,14 @@ if (initialState.isDarkMode) {
   document.body.classList.add('dark-theme');
 }
 
-const applyThemeTransition = () => {
+const startThemeTransition = () => {
+  document.documentElement.classList.add('theme-transitioning');
   document.body.classList.add('theme-transition-active');
+  
   setTimeout(() => {
+    document.documentElement.classList.remove('theme-transitioning');
     document.body.classList.remove('theme-transition-active');
-  }, 600); // 与 CSS 中的过渡时间相匹配
+  }, 200); // 与 CSS 中的过渡时间相匹配
 };
 
 export const themeSlice = createSlice({
@@ -29,6 +32,7 @@ export const themeSlice = createSlice({
   initialState,
   reducers: {
     toggleTheme: (state) => {
+      startThemeTransition();
       state.isDarkMode = !state.isDarkMode;
       state.followSystem = false;
       if (state.isDarkMode) {
@@ -39,9 +43,9 @@ export const themeSlice = createSlice({
         localStorage.setItem('theme', 'light');
       }
       localStorage.setItem('followSystem', 'false');
-      applyThemeTransition();
     },
     setTheme: (state, action: PayloadAction<boolean>) => {
+      startThemeTransition();
       state.isDarkMode = action.payload;
       if (state.isDarkMode) {
         document.body.classList.add('dark-theme');
@@ -50,7 +54,6 @@ export const themeSlice = createSlice({
         document.body.classList.remove('dark-theme');
         localStorage.setItem('theme', 'light');
       }
-      applyThemeTransition();
     },
     toggleFollowSystem: (state) => {
       state.followSystem = !state.followSystem;
@@ -59,15 +62,17 @@ export const themeSlice = createSlice({
       if (state.followSystem) {
         // 如果开启系统跟随，立即应用系统主题
         const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        state.isDarkMode = isDarkMode;
-        if (isDarkMode) {
-          document.body.classList.add('dark-theme');
-          localStorage.setItem('theme', 'dark');
-        } else {
-          document.body.classList.remove('dark-theme');
-          localStorage.setItem('theme', 'light');
+        if (isDarkMode !== state.isDarkMode) {
+          startThemeTransition();
+          state.isDarkMode = isDarkMode;
+          if (isDarkMode) {
+            document.body.classList.add('dark-theme');
+            localStorage.setItem('theme', 'dark');
+          } else {
+            document.body.classList.remove('dark-theme');
+            localStorage.setItem('theme', 'light');
+          }
         }
-        applyThemeTransition();
       }
     },
   },
