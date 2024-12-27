@@ -8,6 +8,7 @@ import { Layout } from './components/Layout';
 import { Home } from './pages/Home';
 import { PoemDetail } from './pages/PoemDetail';
 import { Favorites } from './pages/Favorites';
+import { ErrorBoundary } from './components/ErrorBoundary';
 
 export const App: React.FC = () => {
   return (
@@ -21,15 +22,17 @@ export const App: React.FC = () => {
           },
         }}
       >
-        <Router>
-          <Layout>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/poems/:id" element={<PoemDetail />} />
-              <Route path="/favorites" element={<Favorites />} />
-            </Routes>
-          </Layout>
-        </Router>
+        <ErrorBoundary>
+          <Router>
+            <Layout>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/poems/:id" element={<PoemDetail />} />
+                <Route path="/favorites" element={<Favorites />} />
+              </Routes>
+            </Layout>
+          </Router>
+        </ErrorBoundary>
       </ConfigProvider>
     </Provider>
   );
