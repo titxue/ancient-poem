@@ -61,8 +61,13 @@ export const favoritesApi = {
     const mergedFavorites = [...favorites];
     const serverTime = Date.now();
 
+    // 只处理上次同步后更新的服务器收藏
+    const recentServerFavorites = lastSynced
+      ? mockServerFavorites.filter(fav => fav.updatedAt > lastSynced)
+      : mockServerFavorites;
+
     // 如果本地收藏不存在或更新时间较旧，则添加服务器的收藏
-    mockServerFavorites.forEach(serverFav => {
+    recentServerFavorites.forEach(serverFav => {
       const localFav = favorites.find(f => f.id === serverFav.id);
       if (!localFav || localFav.updatedAt < serverFav.updatedAt) {
         const existingIndex = mergedFavorites.findIndex(f => f.id === serverFav.id);

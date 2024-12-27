@@ -1,9 +1,9 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import type { Poem, PoemListResponse, PoemQueryParams } from '../../types/poem';
+import type { Poem, PoemQueryParams } from '../../types/poem';
 import * as api from '../../services/api';
 
-interface PoemState {
+export interface PoemState {
   poems: Poem[];
   total: number;
   currentPage: number;

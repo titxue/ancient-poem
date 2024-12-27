@@ -5,6 +5,7 @@ import { Typography, Card, Tag, Button, Divider, Spin } from 'antd';
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import type { RootState, AppDispatch } from '../../store';
 import { fetchPoemById } from '../../store/slices/poemSlice';
+import type { PoemState } from '../../store/slices/poemSlice';
 import { FavoriteButton } from '../../components/Poem/FavoriteButton';
 import styles from './PoemDetail.module.scss';
 
@@ -19,7 +20,7 @@ export const PoemDetail: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
   const { selectedPoem: poem, loading, error } = useSelector(
-    (state: RootState) => state.poems
+    (state: RootState) => state.poems as PoemState
   );
 
   useEffect(() => {

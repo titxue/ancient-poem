@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
-import poemReducer from './slices/poemSlice';
-import favoritesReducer from './slices/favoritesSlice';
+import poemReducer from './slices/poemSlice.ts';
+import favoritesReducer from './slices/favoritesSlice.ts';
 
 export const store = configureStore({
   reducer: {

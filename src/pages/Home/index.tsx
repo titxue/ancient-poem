@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { HomeOutlined, BookOutlined, UserOutlined } from '@ant-design/icons';
 import type { AppDispatch, RootState } from '../../store';
 import { fetchPoems, searchPoems } from '../../store/slices/poemSlice';
+import type { PoemState } from '../../store/slices/poemSlice';
 import { PoemList } from '../../components/Poem/PoemList';
 import styles from './Home.module.scss';
 
@@ -13,7 +14,7 @@ const { Search } = Input;
 export const Home: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [currentCategory, setCurrentCategory] = useState('all');
-  const { error } = useSelector((state: RootState) => state.poems);
+  const { error } = useSelector((state: RootState) => state.poems as PoemState);
 
   useEffect(() => {
     dispatch(fetchPoems({ page: 1, pageSize: 12 }));
