@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 @import './reset.scss';
 @import './breakpoints.scss';
 @import './theme.scss';
+=======
+@forward './variables';
+@forward './reset';
+@forward './theme';
+>>>>>>> main
 
 // 全局响应式基础样式
 html {

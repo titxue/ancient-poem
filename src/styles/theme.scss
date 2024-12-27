@@ -1,4 +1,5 @@
 :root {
+<<<<<<< HEAD
   // 基础颜色
   --primary-color: #1890ff;
   --primary-color-hover: #40a9ff;
@@ -108,6 +109,34 @@ body.dark-theme {
   --poem-title-color: #40a9ff;      // 更亮的标题色
   --poem-author-color: rgba(255, 255, 255, 0.85);  // 提高作者信息对比度
   --poem-content-bg: rgba(64, 169, 255, 0.08);     // 更亮的内容背景色
+=======
+  // Light theme variables
+  --background-color: #ffffff;
+  --text-color: #333333;
+  --card-background: #f5f5f5;
+  --border-color: #e0e0e0;
+  --primary-color: #1890ff;
+  --menu-background: #ffffff;
+  --transition-duration: 0.3s;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: all var(--transition-duration);
+  min-height: 100vh;
+  margin: 0;
+  position: relative;
+}
+
+// Dark theme class
+body.dark-theme {
+  --background-color: #1a1a1a;
+  --text-color: #ffffff;
+  --card-background: #2d2d2d;
+  --border-color: #404040;
+  --menu-background: #1a1a1a;
+>>>>>>> main
 
   &::before {
     content: '';
@@ -119,6 +148,7 @@ body.dark-theme {
     background: rgba(0, 0, 0, 0.2);
     pointer-events: none;
     z-index: 1;
+<<<<<<< HEAD
     opacity: 0;
     transition: opacity var(--transition-duration-slow) var(--transition-timing-enter);
     will-change: opacity;
@@ -450,10 +480,52 @@ body.dark-theme {
         color: var(--primary-color) !important;
         background-color: var(--menu-item-active-bg) !important;
       }
+=======
+    transition: opacity var(--transition-duration);
+  }
+}
+
+// Override Ant Design styles in dark mode
+body.dark-theme {
+  .ant-menu {
+    background: var(--menu-background);
+    color: var(--text-color);
+  }
+
+  .ant-menu-item {
+    color: var(--text-color) !important;
+
+    &:hover {
+      color: var(--primary-color) !important;
+    }
+  }
+
+  .ant-layout-header {
+    background: var(--background-color);
+  }
+
+  .ant-layout-content {
+    background: var(--background-color);
+  }
+
+  .ant-card {
+    background: var(--card-background);
+    border-color: var(--border-color);
+  }
+
+  .ant-btn {
+    color: var(--text-color);
+    border-color: var(--border-color);
+
+    &:hover {
+      color: var(--primary-color);
+      border-color: var(--primary-color);
+>>>>>>> main
     }
   }
 }
 
+<<<<<<< HEAD
 // 暗色主题下的子菜单弹出层样式
 body.dark-theme {
   .ant-menu-submenu-popup {
@@ -514,4 +586,12 @@ a {
   &:active {
     color: var(--link-active-color);
   }
+=======
+// Common transitions
+.ant-layout,
+.ant-menu,
+.ant-card,
+.ant-btn {
+  transition: all var(--transition-duration);
+>>>>>>> main
 } 
