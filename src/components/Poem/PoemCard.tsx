@@ -25,11 +25,23 @@ export const PoemCard: React.FC<PoemCardProps> = ({ poem, className }) => {
           [{poem.dynasty}] {poem.author}
         </Typography.Text>
         <div className={styles.content}>
-          {poem.content.map((line, index) => (
-            <Typography.Text key={index} className={styles.line}>
-              {line}
-            </Typography.Text>
-          ))}
+          {poem.content.reduce((acc: React.ReactNode[], line, index) => {
+            if (index % 2 === 0) {
+              acc.push(
+                <div key={index} className={styles.lineGroup}>
+                  <Typography.Text className={styles.line}>
+                    {line}
+                  </Typography.Text>
+                  {poem.content[index + 1] && (
+                    <Typography.Text className={styles.line}>
+                      {poem.content[index + 1]}
+                    </Typography.Text>
+                  )}
+                </div>
+              );
+            }
+            return acc;
+          }, [])}
         </div>
         <div className={styles.tags}>
           {poem.tags.map((tag) => (

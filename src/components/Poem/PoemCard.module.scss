@@ -120,18 +120,23 @@
   }
 }
 
+.lineGroup {
+  display: flex;
+  justify-content: center;
+  gap: 1em;
+  margin-bottom: 10px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
 .line {
-  margin-bottom: 10px !important;
   font-size: 16px;
   line-height: 1.8 !important;
   color: var(--text-color);
-  text-align: center;
   font-family: var(--font-family-poem);
   transition: color var(--transition-duration) var(--transition-timing);
-  
-  &:last-child {
-    margin-bottom: 0 !important;
-  }
   
   &:hover {
     color: var(--primary-color);
